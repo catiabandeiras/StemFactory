@@ -1,0 +1,57 @@
+/*app.css */
+:root {
+    --main-bg-color: #111;
+    --dark-color:       #111111;
+    --light-color:      #f2f2f2;
+/*    --light-hover-color: #bbbbee;*/
+
+    --bg-blueish-color:     #4f60d2;
+    --bg-yellowish-color:   #fed600;
+    --bg-saumon-color:      #f19292;
+    --bg-pink-color:        #ef8cb9;
+    --bg-green-color:       #b8d837;
+}
+
+
+/* header section */
+
+.navbar-header { background-color: var(--main-bg-color); }
+.icon-bar {background-color: var(--light-color);}
+.navbar-header button:hover .icon-bar {background-color: var(--bg-blueish-color);}
+
+.main_header {padding: 10px 20px;}
+.main_header .logo {float: left;}
+.main_header a {text-decoration: none;}
+.main_header h1 {
+    line-height: 58px;     height: 58px; 
+    margin: 0 0 0 120px;   font-size: 26px; 
+    color: var(--dark-color);
+}
+
+.navbar-brand {color: var(--light-color);}
+.navbar-collapse {background-color: var(--main-bg-color); margin-bottom: 5px;}
+.navbar-header a        { color: var(--light-color);}
+.navbar-header a:hover  { color: var(--light-color);}
+
+.min-padding {padding: 5px;}
+
+button.navbar-toggle.collapsed:hover .icon-bar {
+    background-color: aquamarine;
+@media (min-width: 320px) {
+}
+
+@media (min-width: 480px) {
+    .main_header h1 {font-size: 36px;}
+}
+
+@media (max-width: 767px) {
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) { /* 1024 */
+}
+
+@media (min-width: 1200px) {
+}

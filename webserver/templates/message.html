@@ -1,0 +1,13 @@
+{{^ajax}}
+{{> page_start}}
+{{/ajax}}
+
+{{> main_menu}}
+
+<div class="alert alert-{{alertType}}" role="alert">
+    {{alertMessage}}
+</div>
+
+{{^ajax}}
+{{> page_end}}
+{{/ajax}}
