@@ -21,6 +21,7 @@ class BaseViewManager(object):
         self.pages = {
             'homepage':             get_web_template('homepage'),
             'simulation.result':    get_web_template('simulation/results'),
+            'simulation.full':      get_web_template('simulation/full'),
             'not-implemented-yet':  get_web_template('not-implemented-yet'),
             'message':              get_web_template('message'),
             'level.1':              get_web_template('levels/level_1'),
@@ -33,6 +34,13 @@ class BaseViewManager(object):
             'main_header':          get_partial_template('main_header'),
             'page_end':             get_partial_template('page_end'),
             'main_menu':            get_partial_template('main_menu'),
+
+            'panel_content':        get_partial_template('panel/content'),
+            'panel_tabs':           get_partial_template('panel/tabs'),
+
+            'hidden_field':         get_partial_template('fields/hidden'),
+            'combobox_field':       get_partial_template('fields/combobox'),
+            'text_field':           get_partial_template('fields/text'),
         }
 
         self.renderer = pystache.Renderer(partials=self.partials)
@@ -47,6 +55,10 @@ class BaseViewManager(object):
 
     def render_homepage(self, data):
         return self.renderer.render(self.pages.get('homepage'), data, self.partials)
+
+
+    def render_full_simulation(self, data):
+        return self.renderer.render(self.pages.get('simulation.full'), data, self.partials)
 
 
     def render_simulation_result(self, data):

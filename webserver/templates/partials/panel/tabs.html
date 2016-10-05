@@ -1,0 +1,9 @@
+<ul class="nav nav-tabs panel-tabs-container" role="tablist">
+    <!--first li must have class="active"-->
+    {{#panels}}
+    <li role="presentation" data-target-panel="{{id}}-panel" id="{{id}}PanelSelector" >
+        <a href="#">{{label}}</a>
+    </li>
+    {{/panels}}
+</ul>
+
