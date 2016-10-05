@@ -11,6 +11,7 @@ sys.path.insert(0, parentdir)
 #import libs
 import cherrypy
 
+
 from lib.file import get_web_config
 
 from lib.view.base_manager import BaseViewManager
@@ -111,9 +112,25 @@ class Home(object):
 
 
     @cherrypy.expose
-    def submit_simulation(self, scenario=None, jsonParams=None):
-        return self.viewManager.render_simulation_result(data)
+    def simulation_submit(self, **kwargs):
+        print "kwargs", kwargs
+        simulationParams = SimulationParams()
+        simulationParams.update(kwargs)
+        print simulationParams
+        simulationResult = __run_simulation(simulationParams)
+        print simulationResult
+        return self.viewManager.render_simulation_result(simulationResult)
 
+
+    def __run_simulation(self, simulationParams):
+        import simpy
+        from int_database import *
+        from labsetup_new import *
+
+        db = InternalDatabase(simulationParams)
+        env = simpy.Environment()
+        env.process(labsetup(env, simulationParams, db))
+        env.run(until=365.25) # a year
 
     def __NIY(self): return self.viewManager.NIY()
 
