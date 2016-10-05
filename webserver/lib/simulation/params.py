@@ -56,6 +56,6 @@ class SimulationParams(object):
 
 
     def update(self, source):
-        for (key, value) in source.iteritems():
+        for (key, value) in source.items(): #iteritems in python2
             if value:
                 self.__dict__[key] = value

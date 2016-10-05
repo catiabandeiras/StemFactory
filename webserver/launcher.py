@@ -113,19 +113,19 @@ class Home(object):
 
     @cherrypy.expose
     def simulation_submit(self, **kwargs):
-        print "kwargs", kwargs
+        print ("kwargs", kwargs)
         simulationParams = SimulationParams()
         simulationParams.update(kwargs)
-        print simulationParams
-        simulationResult = __run_simulation(simulationParams)
-        print simulationResult
+        print (simulationParams)
+        simulationResult = self.__run_simulation(simulationParams)
+        print (simulationResult)
         return self.viewManager.render_simulation_result(simulationResult)
 
 
     def __run_simulation(self, simulationParams):
         import simpy
-        from int_database import *
-        from labsetup_new import *
+        from int_database import InternalDatabase
+        from labsetup_new import labsetup
 
         db = InternalDatabase(simulationParams)
         env = simpy.Environment()
