@@ -42,6 +42,11 @@ class MainGui:
 
 		#Initialize the global variables
 
+
+        self.NET_PROFIT = 0
+        
+        self.SALES_PRICE = 25000
+
 		self.AREA_FACILITY = 0
 
 		self.AREA_UNIT = 0
@@ -217,7 +222,7 @@ class FacilityPanel:
 		#Create the labels for numbers
 		ttk.Label(self.frame,text = "Number of workers:").grid(row=3,column=0)
 		self.total_workers = ttk.Entry(self.frame,width=15)
-		self.total_workers.insert(END,'1')
+		self.total_workers.insert(END,'2')
 		self.total_workers.config(state=DISABLED)
 		self.total_workers.grid(row=4,column=0)
 
@@ -318,7 +323,7 @@ class CulturePanel:
 		#Add type of MSCs
 		ttk.Label(self.frame,text="MSC source:").grid(row=4,column=0,columnspan=2)
 		self.source_msc = StringVar()
-		self.source_msc.set('asc')
+		self.source_msc.set('bm')
 		self.asc_button = ttk.Radiobutton(self.frame,text="Adipose tissue",variable=self.source_msc,value='asc')
 		self.asc_button.grid(row=5,column=0)
 		self.asc_button.config(state=DISABLED)
@@ -440,7 +445,7 @@ class GrowthPanel:
 		#Add the radiobuttons for the maximum number of passages
 		ttk.Label(self.frame,text="Maximum number of passages:").grid(row=2,column=0)
 		self.max_pass = IntVar()
-		self.max_pass.set(1)
+		self.max_pass.set(3)
 
 		self.p1_button = ttk.Radiobutton(self.frame,text="1",variable=self.max_pass,value=1,command = lambda: self.block_passage_choice())
 		self.p1_button.grid(row=3,column=0)
@@ -468,16 +473,18 @@ class GrowthPanel:
 		
 		self.gr_p1 = ttk.Entry(self.frame,width=15)
 		self.gr_p1.grid(row=3,column=2)
-		self.gr_p1.insert(END,0.2)
+		self.gr_p1.insert(END,0.21)
 		self.gr_p1.config(state=DISABLED)
 
 		ttk.Label(self.frame,text="P2").grid(row=4,column=1)
 		self.gr_p2 = ttk.Entry(self.frame,width=15)
 		self.gr_p2.grid(row=4,column=2)
+		self.gr_p2.insert(END,0.20)
 
 		ttk.Label(self.frame,text="P3").grid(row=5,column=1)
 		self.gr_p3 = ttk.Entry(self.frame,width=15)
 		self.gr_p3.grid(row=5,column=2)
+		self.gr_p3.insert(END,0.18)
 
 		ttk.Label(self.frame,text="P4").grid(row=6,column=1)
 		self.gr_p4 = ttk.Entry(self.frame,width=15)
@@ -503,8 +510,8 @@ class GrowthPanel:
 		main_gui.MAX_NO_PASSAGES = self.max_pass.get()
 
 		main_gui.GR_P1 = round(float(self.gr_p1.get()),2)
-		main_gui.GR_P2 = 0
-		main_gui.GR_P3 = 0
+		main_gui.GR_P2 = round(float(self.gr_p2.get()),2)
+		main_gui.GR_P3 = round(float(self.gr_p3.get()),2)
 		main_gui.GR_P4 = 0
 		main_gui.GR_P5 = 0
 
@@ -628,7 +635,7 @@ class ManualPanel:
 
 		ttk.Label(self.frame5_1,text="Planar seeding density (cells/cm^2):").grid(row=0,column=0)
 		self.sd_planar = ttk.Entry(self.frame5_1,width=15)
-		self.sd_planar.insert(END,1000)
+		self.sd_planar.insert(END,3000)
 		self.sd_planar.config(state=DISABLED)
 		self.sd_planar.grid(row=1,column=0)
 
@@ -827,19 +834,19 @@ class DemandPanel:
 		ttk.Label(self.frame7,text="Million cells/dose:").grid(row=0,column=0)
 		self.cells_dose = ttk.Entry(self.frame7,width=15)
 		self.cells_dose.grid(row=1,column=0)
-		self.cells_dose.insert(END,5)
+		self.cells_dose.insert(END,75)
 		self.cells_dose.config(state=DISABLED)
 
 		ttk.Label(self.frame7,text="Number of doses/year:").grid(row=0,column=1)
 		self.doses_year = ttk.Entry(self.frame7,width=15)
 		self.doses_year.grid(row=1,column=1)
-		self.doses_year.insert(END,1)
+		self.doses_year.insert(END,4)
 		self.doses_year.config(state=DISABLED)
 
 		ttk.Label(self.frame7,text="Number of doses/lot:").grid(row=0,column=2)
 		self.doses_lot = ttk.Entry(self.frame7,width=15)
 		self.doses_lot.grid(row=1,column=2)
-		self.doses_lot.insert(END,1)
+		self.doses_lot.insert(END,4)
 		self.doses_lot.config(state=DISABLED)
 
 				#global CELL_NUMBER_PER_DOSE
