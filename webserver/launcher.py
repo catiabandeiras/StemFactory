@@ -12,7 +12,7 @@ sys.path.insert(0, parentdir)
 import cherrypy
 
 
-from lib.file import get_web_config
+from lib.file import get_web_config, get_level_config
 
 from lib.view.base_manager import BaseViewManager
 from lib.simulation.params import SimulationParams
@@ -53,131 +53,7 @@ class Home(object):
     @cherrypy.expose
     def full(self): #full simulation
         # default param type = text, if options present then it's a select
-        data = {
-            'panels': [
-                {
-                    'id': 'factory',
-                    'label': 'Factory',
-                    'params': [
-                        {
-                            'id': 'AREA_FACILITY',
-                            'label': 'Total GMP Facility Area',
-                            'hidden': True,
-                            'value': 400
-                        },
-                        {
-                            'id': 'AREA_UNIT',
-                            'label': 'Area unit',
-                            'combobox': True,
-                            'options': [
-                                { 'value': '1', 'desc': 'sq. mt.'},
-                                { 'value': '2', 'desc': 'sq. ft.'},
-                            ]
-                        },
-                        {
-                            'id': 'TOTAL_WORKERS',
-                            'label': 'Number of workers',
-                            'hidden': True,
-                            'value': 1
-                        },
-                        {
-                            'id': 'TOTAL_BSC',
-                            'label': 'Number of BSCs',
-                            'hidden': True,
-                            'value': 1
-                        },
-                        {
-                            'id': 'TOTAL_INCUBATORS',
-                            'label': 'Number of incubators',
-                            'hidden': True,
-                            'value': 1
-
-                        },
-                        {
-                            'id': 'TOTAL_BIOREACTORS',
-                            'label': 'Number of bioreactor systems',
-                            'hidden': True,
-                            'value': 1
-                        }
-                    ]
-                },
-                {
-                    'id': 'culture',
-                    'label': 'Culture Conditions',
-                    'params': [
-                    {
-                            'id': 'TYPE_OF_ET',
-                            'label': 'Type of Expansion technology to use',
-                            'hidden': True,
-                            'value': 'planar'
-                        },
-                        {
-                            'id': 'TYPE_OF_MC',
-                            'label': 'Type of microcarrier in suspension technology',
-                            'hidden': True,
-                            'value':'solohill',
-                        },
-                        {
-                            'id': 'SOURCE_OF_MSC',
-                            'label': 'Tissue origin of cells',
-                            'hidden': True,
-                            'value': 'bm'
-                        },
-                        {
-                            'id': 'TYPE_OF_MEDIA',
-                            'label': 'Culture medium for cell growth',
-                            'value': 'fbs',
-                            'readonly': True
-                        },
-                    ]
-                },
-                {
-                    'id': 'growth',
-                    'label': 'Growth Characteristics',
-                    'params': [
-                        {
-                            'id': 'INITIAL_CELLS_PER_DONOR_AVG',
-                            'label': 'Average initial cells per donor',
-                            'hidden': True,
-                            'value': 1
-                        },
-                        {
-                            'id': 'INITIAL_CELLS_PER_DONOR_SD',
-                            'label': 'Standard dev initial cells per donor',
-                            'hidden': True,
-                            'value': 0
-                        },
-                        {
-                            'id': 'MAXIMUM_NUMBER_CPD',
-                            'label': 'Maximum cumulative population doublings',
-                            'hidden': True,
-                            'value': 20
-                        },
-                        {
-                            'id': 'MAX_NO_PASSAGES',
-                            'label': 'Maximum cell passages',
-                            'hidden': True,
-                            'value': 3
-                        },
-                        {
-                            'id': 'P1',
-                            'label': 'Growth rate P1',
-                            'hidden': True,
-                            'value': 1
-
-                        },
-                    ]
-                },
-                {
-                    'id': 'manualOps',
-                    'label': 'Manual Operations'
-                },
-                {
-                    'id': 'manufacturing',
-                    'label': 'Manufacturing Demand'
-                }
-            ]
-        }
+        data = get_level_config('1-start')
 
         return self.viewManager.render_full_simulation(data)
 
@@ -185,12 +61,15 @@ class Home(object):
     @cherrypy.expose
     def simulation_submit(self, **kwargs):
         print ("kwargs", kwargs)
-        simulationParams = SimulationParams()
-        simulationParams.update(kwargs)
-        print (simulationParams)
-        simulationResult = self.__run_simulation(simulationParams)
-        print (simulationResult)
-        return self.viewManager.render_simulation_result(simulationResult)
+        self.simulationParams = SimulationParams()
+        self.simulationParams.update(kwargs)
+        print (self.simulationParams)
+        self.simulationResult = self.__run_simulation(self.simulationParams)
+
+        print ("Params Text", self.simulationParams.text.val)
+
+        print ("Sim Result", self.simulationResult)
+        return self.viewManager.render_simulation_result(self.simulationResult)
 
 
     def __run_simulation(self, simulationParams):
@@ -201,7 +80,9 @@ class Home(object):
         db = InternalDatabase(simulationParams)
         env = simpy.Environment()
         env.process(labsetup(env, simulationParams, db))
-        env.run(until=365.25) # a year
+        #env.run(until=365.25) # a year
+        env.run(until=35) # a fortnight
+
 
     def __NIY(self): return self.viewManager.NIY()
 

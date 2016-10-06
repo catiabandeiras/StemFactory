@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 
 
+class FakeText(object):
+    def __init__(self): self.val = ''
+    def insert(self, f, t):
+        self.val += "\n{}: {}".format(f, t)
+        print ("\nFake Text: {}: {}".format(f, t) )
+
+
 class SimulationParams(object):
 
     def __init__(self):
@@ -59,13 +66,32 @@ class SimulationParams(object):
         self.ANNUAL_DEMAND = 1 # doses / year
         self.LOT_SIZE = 1 #doses / lot
 
+        self.types = {
+            'TYPE_OF_ET': str,
+            'TYPE_OF_MC': str,
+            'SOURCE_OF_MSC': str,
+            'TYPE_OF_MEDIA' : str,
+            'TOTAL_WORKERS': int,
+            'MAX_NO_PASSAGES': int,
+        }
+
+        #fake text
+        self.text = FakeText()
+
 
     def update(self, source):
         for (key, value) in source.items(): #iteritems in python2
-            if key not in ('TYPE_OF_ET','TYPE_OF_MC','SOURCE_OF_MSC','TYPE_OF_MEDIA'):
-                if value:
-                    print(key,value)
-                    self.__dict__[key] = round(float(value),2)
-            else:
-                if value:
-                    self.__dict__[key] = value                    
+
+            if value: # empty values are considered 0
+                vartype = self.types.get(key)
+                print (vartype, key, value)
+                if vartype == str:
+                    tval = value
+                elif vartype == int:
+                    tval = int(value)
+                elif vartype == float:
+                    tval = float(value)
+                else:
+                    tval = float(value)
+
+                self.__dict__[key] = tval
