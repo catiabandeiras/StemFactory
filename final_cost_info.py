@@ -62,7 +62,17 @@ def final_cost_info(env,lab,gui,int_db):
 
     print('The total costs per dose are %.2f EUR.' % final_costs_per_dose)
 
+    gui.NET_PROFIT += (final_costs_per_dose - gui.SALES_PRICE)*gui.ANNUAL_DEMAND
+
     gui.text.insert('9.0','The total costs per dose are %.2f EUR. \n' % final_costs_per_dose)
+
+    if gui.NET_PROFIT > 0:
+
+        gui.text.insert('10.0','Congrats! You have now a profit of %.2f EUR! \n' %gui.NET_PROFIT)
+
+    else:
+
+        gui.text.insert('10.0','Tragedy! You are broke!')
 
     #Add a test to write the values to a file
 
