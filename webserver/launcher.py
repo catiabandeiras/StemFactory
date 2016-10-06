@@ -17,6 +17,9 @@ from lib.file import get_web_config
 from lib.view.base_manager import BaseViewManager
 from lib.simulation.params import SimulationParams
 
+cherrypy.config.update({'server.socket_port': 8099})
+cherrypy.engine.restart()
+
 
 #Increase the recursion limit to avoid the limits of recursion with scipy #copied
 sys.setrecursionlimit(5000)
@@ -135,8 +138,8 @@ class Home(object):
     def __NIY(self): return self.viewManager.NIY()
 
 
-    # set the priority according to your needs if you are hooking something
-    # else on the 'before_finalize' hook point.
+    #set the priority according to your needs if you are hooking something
+    #else on the 'before_finalize' hook point.
     @cherrypy.tools.register('before_finalize', priority=60)
     def secureheaders():
         headers = cherrypy.response.headers
@@ -155,6 +158,8 @@ if __name__ == '__main__':
 
     cherrypy.config.update(get_web_config('global'))
     cherrypy.tree.mount(controller, '/', get_web_config('root'))
+    cherrypy.config.update({'server.socket_port': 8099})
+    cherrypy.engine.restart()
 
     cherrypy.engine.start()
     cherrypy.engine.block()
