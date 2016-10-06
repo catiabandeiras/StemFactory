@@ -76,25 +76,59 @@ class Home(object):
                         },
                         {
                             'id': 'TOTAL_WORKERS',
-                            'label': 'Number of workers'
+                            'label': 'Number of workers',
+                            'hidden': True,
+                            'value': 1
                         },
                         {
                             'id': 'TOTAL_BSC',
-                            'label': 'Number of BSCs'
+                            'label': 'Number of BSCs',
+                            'hidden': True,
+                            'value': 1
                         },
                         {
                             'id': 'TOTAL_INCUBATORS',
-                            'label': 'Number of incubators'
+                            'label': 'Number of incubators',
+                            'hidden': True,
+                            'value': 1
+
                         },
                         {
                             'id': 'TOTAL_BIOREACTORS',
-                            'label': 'Number of bioreactor systems'
+                            'label': 'Number of bioreactor systems',
+                            'hidden': True,
+                            'value': 1
                         }
                     ]
                 },
                 {
                     'id': 'culture',
                     'label': 'Culture Conditions'
+                    'params': [
+                        {
+                            'id': 'TYPE_OF_ET',
+                            'label': 'Type of Expansion technology to use',
+                            'hidden': True,
+                            'value': 'planar'
+                        },
+                        {
+                            'id': 'TYPE_OF_MC',
+                            'label': 'Type of microcarrier in suspension technology',
+                            'hidden': True,
+                            'value':'solohill',
+                        },
+                        {
+                            'id': 'SOURCE_OF_MSC',
+                            'label': 'Tissue origin of cells',
+                            'hidden': True,
+                            'value': 'bm'
+                        },
+                        {
+                            'id': 'TYPE_OF_MEDIA',
+                            'label': 'Number of BSCs',
+                            'value': 'fbs'
+                        },
+                    ]
                 },
                 {
                     'id': 'growth',
@@ -149,7 +183,7 @@ class Home(object):
 
         port = get_web_config('global')["server.socket_port"]
         if port != 80:
-            headers['Content-Security-Policy']+= "localhost:{}".format(port) #TODO change localhost by servername
+            headers['Content-Security-Policy']+= "localhost:{0} 127.0.0.1:{0}".format(port) #TODO change localhost by servername
 
 
 if __name__ == '__main__':
@@ -158,8 +192,6 @@ if __name__ == '__main__':
 
     cherrypy.config.update(get_web_config('global'))
     cherrypy.tree.mount(controller, '/', get_web_config('root'))
-    cherrypy.config.update({'server.socket_port': 8099})
-    cherrypy.engine.restart()
 
     cherrypy.engine.start()
     cherrypy.engine.block()
