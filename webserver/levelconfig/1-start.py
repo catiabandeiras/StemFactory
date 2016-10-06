@@ -171,4 +171,3 @@ config['level'] = {
     'shopping': ['cellA', 'cellB']
 }
 
-

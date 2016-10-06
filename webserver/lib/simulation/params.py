@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
+from lib.simulation.results import SimulationResults
+
+
 class FakeText(object):
     def __init__(self): self.val = ''
     def insert(self, f, t):
@@ -8,6 +11,7 @@ class FakeText(object):
         print ("\nFake Text: {}: {}".format(f, t) )
 
 
+#actually more of a broker...
 class SimulationParams(object):
 
     def __init__(self):
@@ -77,6 +81,13 @@ class SimulationParams(object):
 
         #fake text
         self.text = FakeText()
+
+        #simulation results
+        self.results = SimulationResults()
+
+
+    def example_set_simulation_output_x(self, value):
+        self.value = value
 
 
     def update(self, source):
