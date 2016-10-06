@@ -62,5 +62,10 @@ class SimulationParams(object):
 
     def update(self, source):
         for (key, value) in source.items(): #iteritems in python2
-            if value:
-                self.__dict__[key] = value
+            if key not in ('TYPE_OF_ET','TYPE_OF_MC','SOURCE_OF_MSC','TYPE_OF_MEDIA'):
+                if value:
+                    print(key,value)
+                    self.__dict__[key] = round(float(value),2)
+            else:
+                if value:
+                    self.__dict__[key] = value                    

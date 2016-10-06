@@ -166,12 +166,6 @@ class Home(object):
                             'value': 1
 
                         },
-                        {
-                            'id': 'TOTAL_BIOREACTORS',
-                            'label': 'Number of bioreactor systems',
-                            'hidden': True,
-                            'value': 1
-                        }
                     ]
                 },
                 {
