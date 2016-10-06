@@ -42,10 +42,9 @@ class MainGui:
 
 		#Initialize the global variables
 
+		self.NET_PROFIT = 0
 
-        self.NET_PROFIT = 0
-        
-        self.SALES_PRICE = 25000
+		self.SALES_PRICE = 25000
 
 		self.AREA_FACILITY = 0
 
@@ -222,7 +221,7 @@ class FacilityPanel:
 		#Create the labels for numbers
 		ttk.Label(self.frame,text = "Number of workers:").grid(row=3,column=0)
 		self.total_workers = ttk.Entry(self.frame,width=15)
-		self.total_workers.insert(END,'2')
+		self.total_workers.insert(END,'1')
 		self.total_workers.config(state=DISABLED)
 		self.total_workers.grid(row=4,column=0)
 
@@ -254,6 +253,10 @@ class FacilityPanel:
 		main_gui.TOTAL_BSC = int(self.total_bscs.get())
 		main_gui.TOTAL_INCUBATORS = int(self.total_incubators.get())
 		main_gui.TOTAL_BIOREACTORS = int(self.total_bioreact.get())
+
+		main_gui.NET_PROFIT = 0
+
+		main_gui.SALES_PRICE = 25000
 
 		#Add the buttons
 
@@ -840,13 +843,13 @@ class DemandPanel:
 		ttk.Label(self.frame7,text="Number of doses/year:").grid(row=0,column=1)
 		self.doses_year = ttk.Entry(self.frame7,width=15)
 		self.doses_year.grid(row=1,column=1)
-		self.doses_year.insert(END,4)
+		self.doses_year.insert(END,1)
 		self.doses_year.config(state=DISABLED)
 
 		ttk.Label(self.frame7,text="Number of doses/lot:").grid(row=0,column=2)
 		self.doses_lot = ttk.Entry(self.frame7,width=15)
 		self.doses_lot.grid(row=1,column=2)
-		self.doses_lot.insert(END,4)
+		self.doses_lot.insert(END,1)
 		self.doses_lot.config(state=DISABLED)
 
 				#global CELL_NUMBER_PER_DOSE
