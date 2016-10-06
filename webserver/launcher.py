@@ -103,9 +103,9 @@ class Home(object):
                 },
                 {
                     'id': 'culture',
-                    'label': 'Culture Conditions'
+                    'label': 'Culture Conditions',
                     'params': [
-                        {
+                    {
                             'id': 'TYPE_OF_ET',
                             'label': 'Type of Expansion technology to use',
                             'hidden': True,
@@ -125,14 +125,54 @@ class Home(object):
                         },
                         {
                             'id': 'TYPE_OF_MEDIA',
-                            'label': 'Number of BSCs',
-                            'value': 'fbs'
+                            'label': 'Culture medium for cell growth',
+                            'value': 'fbs',
+                            'readonly': True
                         },
                     ]
                 },
                 {
                     'id': 'growth',
-                    'label': 'Growth Characteristics'
+                    'label': 'Growth Characteristics',
+                    'params': [
+                        {
+                            'id': 'INITIAL_CELLS_PER_DONOR_AVG',
+                            'label': 'Average initial cells per donor',
+                            'hidden': True,
+                            'value': 1
+                        },
+                        {
+                            'id': 'INITIAL_CELLS_PER_DONOR_SD',
+                            'label': 'Standard dev initial cells per donor',
+                            'hidden': True,
+                            'value': 0
+                        },
+                        {
+                            'id': 'MAXIMUM_NUMBER_CPD',
+                            'label': 'Maximum cumulative population doublings',
+                            'hidden': True,
+                            'value': 20
+                        },
+                        {
+                            'id': 'MAX_NO_PASSAGES',
+                            'label': 'Maximum cell passages',
+                            'hidden': True,
+                            'value': 3
+                        },
+                        {
+                            'id': 'P1',
+                            'label': 'Growth rate P1',
+                            'hidden': True,
+                            'value': 1
+
+                        },
+                        {
+                            'id': 'TOTAL_BIOREACTORS',
+                            'label': 'Number of bioreactor systems',
+                            'hidden': True,
+                            'value': 1
+                        }
+                    ]
                 },
                 {
                     'id': 'manualOps',
