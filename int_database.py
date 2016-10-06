@@ -30,7 +30,13 @@ class InternalDatabase(object):
 
 		#Calculate the daily costs of the building
 
-		self.FACILITY_DAILY_COST = (self.COST_SQ_MT_CLEAN_ROOM*self.CLEAN_ROOMS_RATIO+self.COST_SQ_MT_OTHERS*(1-self.CLEAN_ROOMS_RATIO))*gui.AREA_FACILITY/(self.FACILITY_DEPRECIATION_PERIOD*365.25)
+		self.CLEAN_ROOM_DAILY_COST = self.COST_SQ_MT_CLEAN_ROOM*self.CLEAN_ROOMS_RATIO
+
+		self.OTHER_ROOM_DAILY_COST = self.COST_SQ_MT_OTHERS*(1-self.CLEAN_ROOMS_RATIO)
+
+		#Multiplies the daily costs of GMP facility per sq mt per the area facility and divides by the depreciation cost 
+
+		self.FACILITY_DAILY_COST = (self.CLEAN_ROOM_DAILY_COST+self.OTHER_ROOM_DAILY_COST)*gui.AREA_FACILITY/(self.FACILITY_DEPRECIATION_PERIOD*365.25)
 
 		#Input the costs of acquisition of equipment
 

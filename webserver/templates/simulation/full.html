@@ -1,0 +1,21 @@
+
+{{^ajax}}
+{{> page_start}}
+{{/ajax}}
+
+<form action="simulation_submit" method="POST">
+
+{{> panel_tabs}}
+
+{{#panels}}
+{{> panel_content}}
+{{/panels}}
+
+<input type="submit" />
+<input type="reset" />
+
+</form>
+
+{{^ajax}}
+{{> page_end}}
+{{/ajax}}
