@@ -421,6 +421,19 @@ def donor_launch(env,lab,gui,donor,donor_index,int_db):
 
             break
 
+        elif round(donor.cpds,0) >= gui.MAXIMUM_NUMBER_CPD:
+
+            #Send simulation to finish if maximum passage was reached
+
+            clause = 'maxcpd'
+
+            #AC - uncommented
+            print('Maximum CPDs reached! End of simulation!')
+
+            finish_simulation(env,lab,gui,donor,donor_index,clause)
+
+            break
+
         else:
 
             #Increase the passage number
