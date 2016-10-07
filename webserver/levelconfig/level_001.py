@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 # import configuration of assets
-#from levelconfig.common import cells.cellA, cells.cellB
+from levelconfig.common import market, cocktails
+
 
 # base input fields
 config = {
@@ -11,7 +12,7 @@ config = {
             'label': 'Factory',
             'params': [
                 {
-                    'id': 'AREA_FACILITY',
+                    'id': 'AREA_FACILITY', # carry
                     'label': 'Total GMP Facility Area',
                     'hidden': True,
                     'value': 400
@@ -26,29 +27,29 @@ config = {
                     ]
                 },
                 {
-                    'id': 'TOTAL_WORKERS',
+                    'id': 'TOTAL_WORKERS', #carry
                     'label': 'Number of workers',
                     'hidden': True,
                     'value': 1
                 },
                 {
-                    'id': 'TOTAL_BSC',
+                    'id': 'TOTAL_BSC', # biosafety cabinet # carry
                     'label': 'Number of BSCs',
                     'hidden': True,
                     'value': 1
                 },
                 {
-                    'id': 'TOTAL_INCUBATORS',
+                    'id': 'TOTAL_INCUBATORS',# carry
                     'label': 'Number of incubators',
                     'hidden': True,
                     'value': 1
 
                 },
                 {
-                    'id': 'TOTAL_BIOREACTORS',
+                    'id': 'TOTAL_BIOREACTORS',# carry
                     'label': 'Number of bioreactor systems',
                     'hidden': True,
-                    'value': 1
+                    'value': 0
                 }
             ]
         },
@@ -172,7 +173,30 @@ config['level'] = {
 }
 
 #interactions permitted in level
-config['interactions'] = {
-    'shopping': ['cellA', 'cellB']
-}
+config['interactions'] = [
+    {
+        'order': 1,
+        'itemTypes': 'assets',
+        'title': 'Market',
+        'description': 'Buy more equipment, contract workers',
+        'items': [market[0], market[1], market[2]],
+    },
+    {
+        'order': 2,
+        'itemTypes': 'consumables',
+        'title': 'Cocktails',
+        'description': 'Choose the cocktail you think will work best for the stated problem',
+        'items': [cocktails[0], cocktails[1]]
+    }
+]
 
+#starting values that carry from previous level
+config['history'] = {
+    'AREA_FACILITY': 400,
+    'TOTAL_WORKERS': 1,
+    'TOTAL_BSC': 1,
+    'TOTAL_INCUBATORS': 1,
+    'TOTAL_BIOREACTORS': 1,
+
+    'balance': 50000
+}
