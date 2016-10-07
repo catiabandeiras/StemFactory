@@ -14,6 +14,7 @@ var Slem = (function ($) {
     var _cabinetCredits = 0;
 
     var _isSimS1NextButtonActive = false;
+    var _isSimS2NextButtonActive = false;
 
     // Private functions
     var _init = function () {
@@ -163,17 +164,50 @@ var Slem = (function ($) {
             }
         });
 
-        // Next button click event
+        // Next button click event from Step 1 to Step 2
         $("#sim-s1-next-btn").on("click", function () {
 
             if (_isSimS1NextButtonActive) {
 
                 $("#sim-step1-ctn").fadeOut(1000, function () {
 
+                    $("#sim-step2-ctn").fadeIn(1000);
 
+                    $("#sim-s2-total").html(_totalInvestment + "&euro;");
                 });
             }
         });
+
+        // Cocktail A select event
+        $("#sim-s2-cocktailA-add").on("click", function () {
+
+            $("#sim-s2-cocktailA-painel").removeClass("panel-primary").addClass("panel-success");
+            $("#sim-s2-cocktailB-painel").removeClass("panel-success").addClass("panel-primary");
+            $("#sim-s2-next-btn").removeClass("btn-default").addClass("btn-success");
+            _isSimS2NextButtonActive = true;
+        });
+
+        // Cocktail A select event
+        $("#sim-s2-cocktailB-add").on("click", function () {
+
+            $("#sim-s2-cocktailB-painel").removeClass("panel-primary").addClass("panel-success");
+            $("#sim-s2-cocktailA-painel").removeClass("panel-success").addClass("panel-primary");
+            $("#sim-s2-next-btn").removeClass("btn-default").addClass("btn-success");
+            _isSimS2NextButtonActive = true;
+        });
+
+        // Next button click event from Step 2 to Step 3
+        $("#sim-s2-next-btn").on("click", function () {
+
+            if (_isSimS2NextButtonActive) {
+
+                $("#sim-step2-ctn").fadeOut(1000, function () {
+
+                    $("#sim-step3-ctn").fadeIn(1000);
+                });
+            }
+        });
+
     };
 
     return {
