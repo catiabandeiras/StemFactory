@@ -30,9 +30,17 @@ class InternalDatabase(object):
 
 		#Calculate the daily costs of the building
 
-		self.CLEAN_ROOM_DAILY_COST = self.COST_SQ_MT_CLEAN_ROOM*self.CLEAN_ROOMS_RATIO
+		self.CLEAN_ROOM_DAILY_COST = round(self.COST_SQ_MT_CLEAN_ROOM*self.CLEAN_ROOMS_RATIO,2)
 
-		self.OTHER_ROOM_DAILY_COST = self.COST_SQ_MT_OTHERS*(1-self.CLEAN_ROOMS_RATIO)
+		self.OTHER_ROOM_DAILY_COST = round(self.COST_SQ_MT_OTHERS*(1-self.CLEAN_ROOMS_RATIO),2)
+
+		print(type(self.CLEAN_ROOM_DAILY_COST))
+
+		print(type(self.OTHER_ROOM_DAILY_COST))
+
+		print(type(gui.AREA_FACILITY))
+
+		print(type(self.FACILITY_DEPRECIATION_PERIOD))
 
 		#Multiplies the daily costs of GMP facility per sq mt per the area facility and divides by the depreciation cost 
 

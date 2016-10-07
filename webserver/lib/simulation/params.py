@@ -1,6 +1,17 @@
 # -*- coding: utf-8 -*-
 
 
+from lib.simulation.results import SimulationResults
+
+
+class FakeText(object):
+    def __init__(self): self.val = ''
+    def insert(self, f, t):
+        self.val += "\n{}: {}".format(f, t)
+        print ("\nFake Text: {}: {}".format(f, t) )
+
+
+#actually more of a broker...
 class SimulationParams(object):
 
     def __init__(self):
@@ -25,7 +36,7 @@ class SimulationParams(object):
         self.TYPE_OF_MEDIA = 'fbs'
 
         #Growth characteristics
-        self.INITIAL_CELLS_PER_DONOR_AVG = 1.05 # in millions
+        self.INITIAL_CELLS_PER_DONOR_AVG = 1.05e6 # in millions
         self.INITIAL_CELLS_PER_DONOR_SD  = 0 # in millions
         self.MAXIMUM_NUMBER_CPD = 0 #
         self.MAX_NO_PASSAGES = 3 # between 1 and 5
@@ -51,16 +62,53 @@ class SimulationParams(object):
         self.FP_SUSPENSION = 0
         self.HD_PLANAR = 25000 #harvesting density
         self.HD_SUSPENSION = 0
-        self.HEFF_PLANAR = 0.75 #harvesting efficiency
+        self.HEFF_PLANAR = 1 #harvesting efficiency
         self.HEFF_SUSPENSION = 0
 
         #demand
-        self.CELL_NUMBER_PER_DOSE = 75 # in millions
+        self.CELL_NUMBER_PER_DOSE = 75e6 # in millions
         self.ANNUAL_DEMAND = 1 # doses / year
         self.LOT_SIZE = 1 #doses / lot
+        self.MAX_SIM_TIME = 10 #Number of days to reach the end goal
+
+        self.types = {
+            'TYPE_OF_ET': str,
+            'TYPE_OF_MC': str,
+            'SOURCE_OF_MSC': str,
+            'TYPE_OF_MEDIA' : str,
+            'TOTAL_WORKERS': int,
+            'MAX_NO_PASSAGES': int,
+            #Update the other types of passages
+        }
+
+        #fake text
+        self.text = FakeText()
+
+        #simulation results
+        self.results = SimulationResults()
+
+
+    def example_set_simulation_output_x(self, value):
+        self.value = value
 
 
     def update(self, source):
         for (key, value) in source.items(): #iteritems in python2
-            if value:
-                self.__dict__[key] = value
+
+            if value: # empty values are considered 0
+                vartype = self.types.get(key)
+                print (vartype, key, value)
+                if vartype == str:
+                    tval = value
+                elif vartype == int:
+                    tval = int(value)
+                elif vartype == float:
+                    tval = float(value)
+                else:
+                    tval = float(value)
+
+                self.__dict__[key] = tval
+
+
+    def get_param(self, name):      return self.__dict__[name]
+    def set_param(self, name, val):        self.__dict__[name] = val

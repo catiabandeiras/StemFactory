@@ -12,13 +12,12 @@ sys.path.insert(0, parentdir)
 import cherrypy
 
 
-from lib.file import get_web_config
+from lib.file import get_web_config, get_level_config
 
 from lib.view.base_manager import BaseViewManager
 from lib.simulation.params import SimulationParams
 
-cherrypy.config.update({'server.socket_port': 8099})
-cherrypy.engine.restart()
+from levelconfig import common as CommonLevelConfig
 
 
 #Increase the recursion limit to avoid the limits of recursion with scipy #copied
@@ -41,162 +40,63 @@ class Home(object):
 
     @cherrypy.expose
     def index(self):
-        data = {
-            'scenarios': {
-                'level1': {'title' : 'Level 1' },
-                'level2': {'title' : 'Level 2' }
-            }
-        }
+        data = {}
         return self.viewManager.render_homepage(data)
 
 
     @cherrypy.expose
     def full(self): #full simulation
         # default param type = text, if options present then it's a select
-        data = {
-            'panels': [
-                {
-                    'id': 'factory',
-                    'label': 'Factory',
-                    'params': [
-                        {
-                            'id': 'AREA_FACILITY',
-                            'label': 'Total GMP Facility Area',
-                            'hidden': True,
-                            'value': 400
-                        },
-                        {
-                            'id': 'AREA_UNIT',
-                            'label': 'Area unit',
-                            'combobox': True,
-                            'options': [
-                                { 'value': '1', 'desc': 'sq. mt.'},
-                                { 'value': '2', 'desc': 'sq. ft.'},
-                            ]
-                        },
-                        {
-                            'id': 'TOTAL_WORKERS',
-                            'label': 'Number of workers',
-                            'hidden': True,
-                            'value': 1
-                        },
-                        {
-                            'id': 'TOTAL_BSC',
-                            'label': 'Number of BSCs',
-                            'hidden': True,
-                            'value': 1
-                        },
-                        {
-                            'id': 'TOTAL_INCUBATORS',
-                            'label': 'Number of incubators',
-                            'hidden': True,
-                            'value': 1
-
-                        },
-                        {
-                            'id': 'TOTAL_BIOREACTORS',
-                            'label': 'Number of bioreactor systems',
-                            'hidden': True,
-                            'value': 1
-                        }
-                    ]
-                },
-                {
-                    'id': 'culture',
-                    'label': 'Culture Conditions',
-                    'params': [
-                    {
-                            'id': 'TYPE_OF_ET',
-                            'label': 'Type of Expansion technology to use',
-                            'hidden': True,
-                            'value': 'planar'
-                        },
-                        {
-                            'id': 'TYPE_OF_MC',
-                            'label': 'Type of microcarrier in suspension technology',
-                            'hidden': True,
-                            'value':'solohill',
-                        },
-                        {
-                            'id': 'SOURCE_OF_MSC',
-                            'label': 'Tissue origin of cells',
-                            'hidden': True,
-                            'value': 'bm'
-                        },
-                        {
-                            'id': 'TYPE_OF_MEDIA',
-                            'label': 'Culture medium for cell growth',
-                            'value': 'fbs',
-                            'readonly': True
-                        },
-                    ]
-                },
-                {
-                    'id': 'growth',
-                    'label': 'Growth Characteristics',
-                    'params': [
-                        {
-                            'id': 'INITIAL_CELLS_PER_DONOR_AVG',
-                            'label': 'Average initial cells per donor',
-                            'hidden': True,
-                            'value': 1
-                        },
-                        {
-                            'id': 'INITIAL_CELLS_PER_DONOR_SD',
-                            'label': 'Standard dev initial cells per donor',
-                            'hidden': True,
-                            'value': 0
-                        },
-                        {
-                            'id': 'MAXIMUM_NUMBER_CPD',
-                            'label': 'Maximum cumulative population doublings',
-                            'hidden': True,
-                            'value': 20
-                        },
-                        {
-                            'id': 'MAX_NO_PASSAGES',
-                            'label': 'Maximum cell passages',
-                            'hidden': True,
-                            'value': 3
-                        },
-                        {
-                            'id': 'P1',
-                            'label': 'Growth rate P1',
-                            'hidden': True,
-                            'value': 1
-
-                        },
-                        {
-                            'id': 'TOTAL_BIOREACTORS',
-                            'label': 'Number of bioreactor systems',
-                            'hidden': True,
-                            'value': 1
-                        }
-                    ]
-                },
-                {
-                    'id': 'manualOps',
-                    'label': 'Manual Operations'
-                },
-                {
-                    'id': 'manufacturing',
-                    'label': 'Manufacturing Demand'
-                }
-            ]
-        }
+        data = get_level_config('1-start')
 
         return self.viewManager.render_full_simulation(data)
 
 
     @cherrypy.expose
+    def scenarios(self, **kwargs):
+        """scenarios / levels - there are vars that will be carried over from one level to the other."""
+
+        level = kwargs.get('level') or 1
+        if level == 1:
+            self.__initializeSession()
+
+        print ("loading level", level)
+        data = get_level_config('level_{:0>3}'.format(level))
+
+        return self.viewManager.render_level(level, data)
+
+
+    @cherrypy.expose
     def simulation_submit(self, **kwargs):
-        print ("kwargs", kwargs)
-        simulationParams = SimulationParams()
-        simulationParams.update(kwargs)
-        print (simulationParams)
-        simulationResult = self.__run_simulation(simulationParams)
-        print (simulationResult)
-        return self.viewManager.render_simulation_result(simulationResult)
+#        print ("kwargs", kwargs)
+        self.simulationParams = SimulationParams()
+        self.simulationParams.update(kwargs)
+
+        self.__checkPurchases(self.simulationParams)
+
+#        print (self.simulationParams)
+        self.simulationResult = self.__run_simulation(self.simulationParams)
+
+#        print ("Params Text", self.simulationParams.text.val)
+
+#        print ("Sim Result", self.simulationResult)
+
+        try:
+            old_balance = int(kwargs.get('balance'))
+        except:
+            old_balance = 0 #initial balance
+        new_balance = old_balance + self.simulationParams.NET_PROFIT
+        self.simulationResult.balance = new_balance
+
+        if new_balance < 0: return self.viewManager.render_bankrupt(self.simulationResult)
+
+        self.simulationResult.next_level = int(kwargs.get('level')) + 1
+        data = {'params': self.simulationParams, 'results': self.simulationResult}
+        if self.simulationParams.NET_PROFIT <= 0:
+            self.viewManager.render_loss(data)
+        #elif major profit(2 stars, 3 stars a la angry birds based on a fixed value per level?)
+        else: # profit
+            return self.viewManager.render_profit(data)
 
 
     def __run_simulation(self, simulationParams):
@@ -207,7 +107,10 @@ class Home(object):
         db = InternalDatabase(simulationParams)
         env = simpy.Environment()
         env.process(labsetup(env, simulationParams, db))
-        env.run(until=365.25) # a year
+        #env.run(until=365.25) # a year
+        env.run(until=simulationParams.MAX_SIM_TIME) # a month <- make this variable
+        return simulationParams.results
+
 
     def __NIY(self): return self.viewManager.NIY()
 
@@ -224,6 +127,38 @@ class Home(object):
         port = get_web_config('global')["server.socket_port"]
         if port != 80:
             headers['Content-Security-Policy']+= "localhost:{0} 127.0.0.1:{0}".format(port) #TODO change localhost by servername
+
+
+    def __initializeSession(self):
+        cherrypy.session['balance'] = CommonLevelConfig.startingBalance
+        cherrypy.session['AREA_FACILITY'] = 400
+        cherrypy.session['TOTAL_WORKERS'] = 0
+        cherrypy.session['TOTAL_BSC'] = 0
+        cherrypy.session['TOTAL_INCUBATORS'] = 0
+        cherrypy.session['TOTAL_BIOREACTORS'] = 0
+
+
+    def __assetPurchase(self, assetId, qty):
+        asset = CommonLevelConfig.get_asset(assetId)
+        cherrypy.session['old_' + assetId] = cherrypy.session[assetId]
+        cherrypy.session[assetId] += qty
+        cherrypy.session['balance']-= qty * asset['price']
+        if cherrypy.session['balance'] < 0:
+            raise Exception("Not enough funds")
+
+
+    def __checkPurchases(self, params):
+        print ("Balance before purchases: {}".format(cherrypy.session['balance']))
+        cherrypy.session['old_balance'] = cherrypy.session['balance']
+        for assetId in ['TOTAL_WORKERS', 'TOTAL_BSC', 'TOTAL_INCUBATORS', 'TOTAL_BIOREACTORS']:
+            submittedAmount = params.get_param(assetId)
+            if cherrypy.session[assetId] < submittedAmount:
+                qty = submittedAmount - cherrypy.session[assetId]
+                print ("Purchasing {} {}".format(qty, assetId))
+                self.__assetPurchase(assetId, qty)
+                print ("balance after purchasing {} {}: {}".format(qty, assetId, cherrypy.session['balance']))
+
+        print ("Balance after purchases: {}".format(cherrypy.session['balance']))
 
 
 if __name__ == '__main__':

@@ -1,0 +1,28 @@
+
+{{^ajax}}
+{{> page_start}}
+{{/ajax}}
+
+
+<h3>You lost some money in this contract.</h3>
+<p>but not all is lost!</p>
+
+{{> results_summary}}
+
+
+<form action="retry_level" method="GET">
+
+
+{{> repeat_variables}}
+
+
+<input type="submit" />
+
+<a href="scenarios">Restart</a>
+<a href="scenarios?level={{nextlevel}}">Next Level</a>
+
+</form>
+
+{{^ajax}}
+{{> page_end}}
+{{/ajax}}

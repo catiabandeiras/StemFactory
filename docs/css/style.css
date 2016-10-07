@@ -1,0 +1,182 @@
+.clearfix {
+  clear: right;
+  clear: left;
+  overflow: hidden;
+}
+.block {
+  display: block;
+}
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ol li,
+ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+img {
+  max-width: 100%;
+  -webkit-backface-visibility: hidden;
+}
+::-webkit-input-placeholder {
+  color: #6e6e6e;
+  font-size: 0.9em;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #6e6e6e;
+  font-size: 0.9em;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #6e6e6e;
+  font-size: 0.9em;
+}
+:-ms-input-placeholder {
+  color: #6e6e6e;
+  font-size: 0.9em;
+}
+.btn-primary {
+  background-color: #0AB0C9;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #088598;
+}
+/* 
+TERESA ALVES | trezalves.com/Jekyll
+*/
+html {
+  font-size: 1em;
+  background-color: #ededed;
+  margin: 0;
+  padding: 0;
+}
+html body {
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #0AB0C9;
+}
+a:hover,
+a:focus,
+a:active {
+  color: #055b68;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+}
+/* Block Background Colors */
+#header {
+  background: #0AB0C9;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+#header h1 {
+  margin: 0;
+}
+#header h1 a {
+  color: #f9f9f9;
+  padding: 10px 0;
+  display: block;
+}
+#header h1 a:hover,
+#header h1 a:focus {
+  opacity: 0.7;
+}
+#header .site-description {
+  color: #f9f9f9;
+}
+#header ul.nav {
+  text-align: right;
+}
+#header ul.nav li {
+  display: inline-block;
+}
+#header ul.nav li a {
+  font-size: 1.5em;
+  color: #f9f9f9;
+  border-bottom: 2px solid transparent;
+}
+#header ul.nav li a:hover,
+#header ul.nav li a:focus {
+  background: rgba(0, 0, 0, 0.1);
+}
+#header ul.nav li a.active {
+  border-bottom: 2px solid #f9f9f9;
+}
+#header:not(.homepage) h1 {
+  font-size: 26px;
+}
+#header:not(.homepage) h1 a {
+  padding: 10px 0;
+}
+#header:not(.homepage) .site-description {
+  display: none;
+}
+#header.homepage h1 {
+  font-size: 36px;
+}
+#header.homepage h1 a {
+  padding: 20px 0;
+}
+#header.homepage ul.nav {
+  padding-top: 15px;
+}
+#footer {
+  background: #e0e0e0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 2em 0;
+}
+#footer ul.team li .photo {
+  padding: 2em;
+}
+#footer ul.team li .photo img {
+  display: block;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+  max-width: 100%;
+  height: auto;
+}
+#footer ul.team li p {
+  text-align: center;
+}
+#footer ul.team li p.highlight {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+  font-size: 1.5em;
+}
+.contentBox {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+.container .jumbotron {
+  padding: 0 !important;
+  background: transparent;
+}
+.container .jumbotron p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+}
+.footer2 {
+  background: #0AB0C9;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.footer2 .copyright {
+  text-align: center;
+  padding: 1em 0;
+  color: #f9f9f9;
+}

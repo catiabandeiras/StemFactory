@@ -1,0 +1,69 @@
+@import "x_variables.less";
+@import "x_mixins.less";
+
+
+
+////////////////////////////////////////////
+// HELPERS CLASSES
+////////////////////////////////////////////
+.clearfix { // is also a mixin
+	clear:right; clear:left; 
+	overflow:hidden;
+}
+.block {
+  display:block;
+}
+
+
+////////////////////////////////////////////
+// LISTS
+////////////////////////////////////////////
+ol, ul {
+	list-style: none; .no-space-around();
+	li {
+		list-style: none; .no-space-around();
+	}
+}
+
+
+////////////////////////////////////////////
+// IMAGES
+////////////////////////////////////////////
+img {
+	max-width:100%;
+	-webkit-backface-visibility: hidden;
+}
+
+
+////////////////////////////////////////////
+// PLACEHOLDER
+////////////////////////////////////////////
+::-webkit-input-placeholder {
+   color: @search-placeholder-txt-color;
+   font-size:0.9em;
+}
+:-moz-placeholder { /* Firefox 18- */
+	color: @search-placeholder-txt-color;
+	font-size:0.9em;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+	color: @search-placeholder-txt-color;
+	font-size:0.9em;
+}
+:-ms-input-placeholder {  
+	color: @search-placeholder-txt-color;
+	font-size:0.9em;
+}
+
+
+// BORDER-BOX
+////////////////////////////////////////////
+.btn-primary {
+	background-color:@main-color;
+	border:1px solid rgba(0,0,0,0.1);
+	&:hover, &:focus {
+		background-color:darken(@main-color,10%);
+	}
+}
+
+

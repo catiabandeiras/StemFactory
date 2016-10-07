@@ -1,0 +1,52 @@
+
+{{^ajax}}
+{{> page_start}}
+{{/ajax}}
+
+{{#level}}
+    <input type="hidden" id="level" value="{{number}}" />
+    <p class="levelNumber">{{number}}</p>
+    <p class="title">{{title}}</p>
+    <p class="description">{{description}}</p>
+    <div class="instruction">{{instructions}}</div>
+{{/level}}
+
+
+{{#interactions}}
+    <div class="interation" data-order="{{order}}">
+        <p class="interaction-title">{{title}}</p>
+        <p class="interaction-description">{{description}}</p>
+        <ul class="items {{itemTypes}}">
+            {{#items}}
+            <li class="item" data-type="{{itemTypes}}" data-price="{{price}}" data-field="{{fieldId}}" title="{{tooltip}}"
+                {{#growth}}data-growth="{{growthParameters}}"{{/growth}}>
+                <img src="/static/img/{{img}}" />
+                <p class="name">{{name}}</p>
+                <p class="price">{{price}} €</p>
+                {{#priceDescription}}<p class="price-description">{{priceDescription}}</p>{{/priceDescription}}
+                {{#growth}}<p class="avg-growth">{{growth}}</p>{{/growth}}
+            </li>
+            {{/items}}
+        </ul>
+
+    </div>
+{{/interactions}}
+
+
+<form action="simulation_submit" method="POST">
+{{#level}}
+    <input type="hidden" id="level" name="level" value="{{number}}" />
+{{/level}}
+
+{{#panels}}
+{{> panel_content}}
+{{/panels}}
+
+<input type="submit" />
+<input type="reset" />
+
+</form>
+
+{{^ajax}}
+{{> page_end}}
+{{/ajax}}
