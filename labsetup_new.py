@@ -137,6 +137,8 @@ def finish_simulation(env,lab,gui,donor,donor_index,clause):
 
         print('No need for more passages, maximum capacity reached. Break simulation')
 
+        gui.results.append_event(env.now, "Max_Capacity_Reached")
+
         number_doses_per_donor = math.floor(donor.final_cells_passage[donor.passage_no-2]/gui.CELL_NUMBER_PER_DOSE)
 
         final_passage_no = donor.passage_no - 1
@@ -164,6 +166,8 @@ def finish_simulation(env,lab,gui,donor,donor_index,clause):
     elif clause == 'maxtime':
 
         print('Maximum simulation time allowed reached. Break simulation')
+
+        gui.results.append_event(env.now, "Max_Time_Reached")
 
         number_doses_per_donor = math.floor(donor.final_cells_passage[donor.passage_no-1]/gui.CELL_NUMBER_PER_DOSE)
 
