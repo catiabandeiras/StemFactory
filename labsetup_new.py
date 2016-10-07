@@ -98,7 +98,7 @@ def labsetup(env,gui,int_db):
 
             break
 
-        elif env.now == gui.MAX_SIM_TIME:
+        elif round(env.now,1) == float(gui.MAX_SIM_TIME):
 
             print('Time is over!')
 
