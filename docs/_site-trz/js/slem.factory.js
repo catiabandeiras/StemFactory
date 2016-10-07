@@ -174,6 +174,10 @@ var Slem = (function ($) {
                 });
             }
         });
+
+        $("#sim-s2-cocktailA-add").on("click", function () {
+
+        });
     };
 
     return {

@@ -60,6 +60,7 @@ html {
 html body {
   margin: 0;
   padding: 0;
+  padding-bottom: 50px;
 }
 a {
   color: #0AB0C9;
@@ -166,12 +167,16 @@ h6 {
   padding: 0 !important;
   background: transparent;
 }
-.container .jumbotron p {
+.container p {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 18px;
 }
 .footer2 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: #0AB0C9;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
