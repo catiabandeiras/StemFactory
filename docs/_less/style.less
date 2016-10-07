@@ -1,0 +1,67 @@
+@import "x_reset.less";
+@import "x_variables.less";
+@import "x_mixins.less";      
+///////////////////////////////////////
+
+/* 
+TERESA ALVES | trezalves.com/Jekyll
+*/
+
+///////////////////////////////////////
+html { 
+	font-size:1em; 
+	background-color:@lighter-grey; 
+	.no-space-around();
+	body {
+		.no-space-around();
+	}
+}
+
+a {
+	color:@main-color;
+	&:hover, &:focus, &:active {
+		color:darken(@main-color,20%); 
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+	.titles-font();
+}
+
+///////////////////////////////////////
+/* Block Background Colors */
+///////////////////////////////////////
+#header {
+	background:@light-grey;
+	border-bottom:@dark-border;
+	padding:2em 0;
+
+
+}
+#footer {
+	background:@light-grey;
+	border-top:@dark-border;
+	padding:2em 0;
+
+	ul.team {
+		li {
+			.photo {
+				padding:2em;
+				img {
+					display:block;
+					.round-border();
+					max-width:100%; height:auto;
+				}
+			}
+			p {
+				text-align:center;
+				&.highlight {
+					.titles-font();
+					font-size:1.5em;
+				}
+			}
+		}
+	}
+}
+
+
