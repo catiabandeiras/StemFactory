@@ -20,7 +20,7 @@ class BaseViewManager(object):
     def load_templates(self):
         self.pages = {
             'homepage':             get_web_template('homepage'),
-            'simulation.result':    get_web_template('simulation/results'),
+            'simulation.result':    get_web_template('simulation/results/profit'),
             'simulation.full':      get_web_template('simulation/full'),
             'not-implemented-yet':  get_web_template('not-implemented-yet'),
             'message':              get_web_template('message'),
