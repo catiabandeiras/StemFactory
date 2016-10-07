@@ -26,6 +26,8 @@ from et_class import *
 from expansion_tech import *
 from final_cost_info import *
 
+
+
 #Create the laboratory by initializing the internal database when the simulation starts running
 #passes both the GUI and database parameters
 
@@ -44,7 +46,7 @@ def labsetup(env,gui,int_db):
     #yield env.timeout(1)
 
 #    print(env.now)
-    
+
     #Initialize the donors (assume infinite, so it's a while True statement)
 
     donor_index = 0
@@ -119,6 +121,10 @@ def dose_lot_print(env,lab,gui):
 
     lab.total_lots = math.ceil(lab.total_doses/gui.LOT_SIZE)
 
+    #AC MOD - set simulation results
+    gui.results.addDonorResults(env.now, lab.total_doses, lab.total_lots)
+
+
     print('The total lots produced within the run at %.5f days are %d' % (env.now,lab.total_lots))
 
     gui.text.insert('2.0','The total lots produced within the run at %.5f days are %d \n' % (env.now,lab.total_lots))
@@ -175,7 +181,7 @@ def finish_simulation(env,lab,gui,donor,donor_index,clause):
 
 
     #print('Occupied incubators after end of donor processing')
-    #print(lab.occupied_incubators)  
+    #print(lab.occupied_incubators)
 
     #Print the current dose information
 
@@ -235,14 +241,14 @@ def donor_launch(env,lab,gui,donor,donor_index,int_db):
 #        print(harvest_density_area)
 
         if (name_of_et == prev_et_name and number_seeded_et == prev_no_et) or new_seed_dens > harvest_density_area:
-            
+
             #Send simulation to finish if maximum capacity was reached
 
             clause = 'maxcap'
 
             finish_simulation(env,lab,gui,donor,donor_index,clause)
-            
-            break  
+
+            break
 
 
 #         # print('Number of seeded %s ETs is %d' % (name_of_et,number_seeded_et))
@@ -260,7 +266,7 @@ def donor_launch(env,lab,gui,donor,donor_index,int_db):
         lab_queue_update(env,lab,donor,name_of_et,new_seed_vars,gui,int_db)
 
 #         print('feeding time is %.5f' %lab.feeding_time)
-          
+
 
         #Gets what are the occupied workers
 
@@ -361,12 +367,12 @@ def donor_launch(env,lab,gui,donor,donor_index,int_db):
                 # print(lab.occupied_bscs)
 
                 #print('Occupied incubators after passage %d of donor %d finished in the outside loop' %(donor.passage_no,donor_index))
-                #print(lab.occupied_incubators)                                
+                #print(lab.occupied_incubators)
 
                 print('Final number of cells of passage %d are %d' % (donor.passage_no,donor.final_cells_passage[donor.passage_no-1]))
-                
-                #Put a structure to loop over and put the next passage of the donor on hold until workers are available. 
-                
+
+                #Put a structure to loop over and put the next passage of the donor on hold until workers are available.
+
                 break
 
         #Update the total CPD of the passage
@@ -383,7 +389,8 @@ def donor_launch(env,lab,gui,donor,donor_index,int_db):
 
             clause = 'maxpass'
 
-            #print('Maximum passages reached! End of simulation!')
+            #AC - uncommented
+            print('Maximum passages reached! End of simulation!')
 
             finish_simulation(env,lab,gui,donor,donor_index,clause)
 
@@ -394,7 +401,16 @@ def donor_launch(env,lab,gui,donor,donor_index,int_db):
             #Increase the passage number
 
             donor.passage_no += 1
-
+            #AC - debug
+            print ("Donor {} - Passage No increased to {}".format( donor, donor.passage_no))
         yield env.timeout(0.0001)
 
+    if (donor.passage_no > gui.MAX_NO_PASSAGES:
+        gui.results.append_event(env.now, "Max_Passages_reached")
+
+    if donor.cpds > gui.MAXIMUM_NUMBER_CPD:
+        gui.results.append_event(env.now, "Max_CPD_reached")
+
+    print ("exited cycle cond 1 - donor passage {} <= max passage {}".format(donor.passage_no, gui.MAX_NO_PASSAGES))
+    print ("exited cycle cond 2 - donor CPDS    {} <= MAX CPDS    {}".format(donor.cpds,       gui.MAXIMUM_NUMBER_CPD))
 
