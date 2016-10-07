@@ -122,7 +122,7 @@ def dose_lot_print(env,lab,gui):
     lab.total_lots = math.ceil(lab.total_doses/gui.LOT_SIZE)
 
     #AC MOD - set simulation results
-    gui.results.addDonorResults(env.now, lab.total_doses, lab.total_lots)
+    gui.results.add_donor_results(env.now, lab.total_doses, lab.total_lots)
 
 
     print('The total lots produced within the run at %.5f days are %d' % (env.now,lab.total_lots))
@@ -405,7 +405,7 @@ def donor_launch(env,lab,gui,donor,donor_index,int_db):
             print ("Donor {} - Passage No increased to {}".format( donor, donor.passage_no))
         yield env.timeout(0.0001)
 
-    if (donor.passage_no > gui.MAX_NO_PASSAGES:
+    if donor.passage_no == gui.MAX_NO_PASSAGES:
         gui.results.append_event(env.now, "Max_Passages_reached")
 
     if donor.cpds > gui.MAXIMUM_NUMBER_CPD:
