@@ -34,10 +34,9 @@ h1, h2, h3, h4, h5, h6 {
 #header {
 	background:@main-color;
 	border-bottom:@dark-border;
-	padding:2em 0;
 
 	h1 {
-		margin:0; font-size:26px;
+		margin:0; 
 		a {
 			color:@almost-white;
 			padding: 10px 0;
@@ -69,11 +68,29 @@ h1, h2, h3, h4, h5, h6 {
 	}
 
 	&:not(.homepage) {
-		padding:0;
-		h1 a {  }
+
+		h1 {
+			font-size:26px;
+			a {
+				padding:10px 0;
+			}
+		}
 		.site-description {display:none; }
 	}
+
+	&.homepage {
+		h1 { 
+			font-size:36px; 
+			a {
+				padding:20px 0;
+			}
+		}
+		ul.nav {
+			padding-top:15px;
+		}
+	}
 }
+
 #footer {
 	background:@light-grey;
 	border-top:@dark-border;
@@ -99,6 +116,12 @@ h1, h2, h3, h4, h5, h6 {
 		}
 	}
 }
+
+
+.contentBox {
+	padding-top:2em; padding-bottom:2em;
+}
+
 
 .footer2 {
 	background:@main-color;
