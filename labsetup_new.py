@@ -98,23 +98,9 @@ def labsetup(env,gui,int_db):
 
             break
 
-    while True:
-
-        if lab.finished_donors >= donor_index:
-
-            #Only puts the print to the final doses and lot when all donors were processed.
-
-            dose_lot_print(env,lab,gui)
-
-            #Print the costs
-
-            final_cost_info(env,lab,gui,int_db)
-
-            break
-
         elif env.now == gui.MAX_SIM_TIME:
 
-            finish_simulation(env,lab,gui,donor,donor_index,'maxtime')
+            print('Time is over!')
 
             dose_lot_print(env,lab,gui)
 
@@ -124,11 +110,25 @@ def labsetup(env,gui,int_db):
 
             break
 
-        else:
+    # while True:
 
-            yield env.timeout(0.0001)
+    #     if lab.finished_donors >= donor_index:
 
-            continue
+    #         #Only puts the print to the final doses and lot when all donors were processed.
+
+    #         dose_lot_print(env,lab,gui)
+
+    #         #Print the costs
+
+    #         final_cost_info(env,lab,gui,int_db)
+
+    #         break
+
+    #     else:
+
+    #         yield env.timeout(0.0001)
+
+    #         continue
 
 
 
