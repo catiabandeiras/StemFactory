@@ -89,7 +89,7 @@ config = {
                     'id': 'INITIAL_CELLS_PER_DONOR_AVG',
                     'label': 'Average initial cells per donor',
                     'hidden': True,
-                    'value': 1
+                    'value': 1.05e6
                 },
                 {
                     'id': 'INITIAL_CELLS_PER_DONOR_SD',
@@ -113,36 +113,51 @@ config = {
                     'id': 'P1',
                     'label': 'Growth rate P1',
                     'hidden': True,
-                    'value': 1
+                    'value': 0.21
                 },
                 {
                     'id': 'P2',
                     'label': 'Growth rate P2',
                     'hidden': True,
-                    'value': 1
+                    'value': 0.20
                 },
                 {
                     'id': 'P3',
                     'label': 'Growth rate P3',
                     'hidden': True,
-                    'value': 1
+                    'value': 0.18
                 },
-                {
-                    'id': 'SD_PLANAR',
-                    'label': 'Seeding Density (planar)',
-                    'hidden': True,
-                    'value': 3000
-                }
             ]
         },
         {
             'id': 'manualOps',
-            'label': 'Manual Operations'
+            'label': 'Manual Operations',
+
         },
         {
             'id': 'manufacturing',
-            'label': 'Manufacturing Demand'
-        }
+            'label': 'Manufacturing Demand',
+            'params': [
+                {
+                    'id': 'CELL_NUMBER_PER_DOSE',
+                    'label': 'Cell number per dose',
+                    'hidden': True,
+                    'value': 75e6
+                },
+                {
+                    'id': 'ANNUAL_DEMAND',
+                    'label': 'Number of doses per year',
+                    'hidden': True,
+                    'value': 1
+                },
+                {
+                    'id': 'LOT_SIZE',
+                    'label': 'Number of doses per lot',
+                    'hidden': True,
+                    'value': 1
+                }
+            ]
+        },
     ]
 }
 
@@ -153,7 +168,6 @@ config['level'] = {
     'description': "Let's cure your first pacient",
     'instructions': 'choose between cells A and B and try to obatin a profit',
 
-    'shopping': [cellA, cellB]
+    'shopping': ['cellA', 'cellB']
 }
 
-}
