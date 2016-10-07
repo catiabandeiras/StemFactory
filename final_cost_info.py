@@ -74,12 +74,12 @@ def final_cost_info(env,lab,gui,int_db):
     if gui.NET_PROFIT > 0:
 
         gui.text.insert('10.0','Congrats! You have now a profit of %.2f EUR! \n' %gui.NET_PROFIT)
-        gui.results.appendEvent(env.now, 'loss')
+        gui.results.append_event(env.now, 'loss')
 
     else:
 
         gui.text.insert('10.0','Tragedy! You are broke!\n')
-        gui.results.appendEvent(env.now, 'profit')
+        gui.results.append_event(env.now, 'profit')
 
     # AC MOD - track costs
     gui.results.set_costs(
