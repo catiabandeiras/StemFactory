@@ -18,21 +18,18 @@
 	<meta name="MobileOptimized" content="320">
 
 	<!-- TÍTULOS -->
-	<title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.title }}</title>
+	<title>About – stemFactory</title>
 	
-	{% if page.title %}
-	<meta property="og:title" content="{{ page.title }}" />
-	<meta property="twitter:title" content="{{ page.title }}" />
-	{% endif %}
+	
+	<meta property="og:title" content="About" />
+	<meta property="twitter:title" content="About" />
+	
 
 	<!-- DESCRIÇÃO -->
-	{% if page.description %}
-	<meta name="description" content="{{ page.description| strip_html }}" />
-	<meta property="og:description" content="{{ page.description| strip_html }}" />
-	{% else %}
-	<meta name="description" content="{{ site.description }}">
-	<meta property="og:description" content="{{ site.description }}" />
-	{% endif %}
+	
+	<meta name="description" content="Can you supply humanity with the ultimate cure?">
+	<meta property="og:description" content="Can you supply humanity with the ultimate cure?" />
+	
 
 	<!-- ICONs -->
 	<!-- <link rel="icon" type="image/x-icon" href="imgs/icons/favicon.ico"> -->
@@ -63,18 +60,54 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<!-- PROJECT STYLE -->
-	<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
-<body class="{{page.id}}">
+<body class="about">
 
-	{% include shared-header.html %}
+		<!-- CABEÇALHO DO SITE -->
+	<div id="header" class="header about">
+		<div class="container">
+
+			<div class="col-md-6">
+				<h1><a href="/">stemFactory</a></h1>
+				<p class="site-description">Can you supply humanity with the ultimate cure?</p>
+			</div>
+
+			<div class="col-md-6">
+				<ul class="nav">
+	<li>
+		<a href="/simulator/index.html" class="">Simulator</a>
+	</li>
+	<li>
+		<a href="/about/index.html" class="active">About</a>
+	</li>
+</ul>
+			</div>
+		</div>
+	</div>
+	<!-- end CABEÇALHO DO SITE -->
 
 	<!-- CONTEÚDO -->
-	{{ content }}
+	<div class="container">
+	<h2>About</h2>
+
+<p>In StemFactory, you will design, maintain and manage a stem cell manufacturing facility, making the most of limited resources and turning cures into profit.</p>
+
+<p>Stem cells have very promising therapeutical applications due to their special properties. However, your competitors have several problems that result in providing these therapies at very high costs and to very few people. Can you beat them by producing cheaper cells and making them available to more people in need?</p>
+
+<p>You will start off with a very small facility. From there you will collect profit to invest in new equipments and move up the cell manufacturing ladder.</p>
+
+</div>
+	
+
 	<!-- end CONTEÚDO -->
 
-	{% include shared-footer-copyright.html %}
+	<div class="footer2">
+	<div class="container">
+		<div class="copyright">stemFactory © 2016</div>
+	</div>
+</div>
 
 	<!-- JAVASCRIPT -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

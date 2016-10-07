@@ -1,7 +1,7 @@
 
 # Título e descrição do site - SEO
 title: stemFactory
-description: Cenas sobre stemFactory
+description: Can you supply humanity with the ultimate cure? 
 
 
 # Para que as páginas não tenham ".html" no browser
@@ -12,3 +12,5 @@ permalink: pretty
 exclude: ['config.codekit','README.md','_less','_site', 'assets']
 
 # baseurl: StemFactory/frontEnd
+
+destination: _site-trz
