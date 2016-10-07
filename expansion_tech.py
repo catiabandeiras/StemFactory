@@ -65,8 +65,9 @@ def expansion_tech_run(env,et,donor,lab,gui,int_db):
 
             continue
             
+    #If harvesting before the density is favorable, do it
 
-    while et.no_cells < (et.harvest_density*et.area):
+    while et.no_cells < min(et.harvest_density*et.area,gui.CELL_NUMBER_PER_DOSE*(gui.ANNUAL_DEMAND-lab.total_doses)):
 
         #Chooses if the process goes to a bioreactor system or is in the incubator only
 
