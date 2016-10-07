@@ -90,7 +90,7 @@ class Home(object):
 
         if new_balance < 0: return self.viewManager.render_bankrupt(self.simulationResult)
 
-        self.simulationResult.next_level = int(kwargs.get('level')) + 1
+        #self.simulationResult.next_level = int(kwargs.get('level')) + 1
         data = {'params': self.simulationParams, 'results': self.simulationResult}
         if self.simulationParams.NET_PROFIT <= 0:
             self.viewManager.render_loss(data)

@@ -72,6 +72,9 @@ class SimulationParams(object):
         self.MAX_SIM_TIME = 10 #Number of days to reach the end goal
 
         self.types = {
+            'AREA_FACILITY': float,
+            'AREA_UNIT': int,
+
             'TYPE_OF_ET': str,
             'TYPE_OF_MC': str,
             'SOURCE_OF_MSC': str,
@@ -93,6 +96,10 @@ class SimulationParams(object):
             'GR_P3': float,
             'GR_P4': float,
             'GR_P5': float,
+            
+            'P1': float,
+            'P2': float,
+            'P3': float,
 
             'SD_PLANAR': float, #seeding density
             'SD_SUSPENSION': float, #in suspension
