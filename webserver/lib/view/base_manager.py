@@ -60,6 +60,7 @@ class BaseViewManager(object):
 
 
     def render_homepage(self, data):
+        data['bodyClass'] = 'homepage'
         return self.renderer.render(self.pages.get('homepage'), data, self.partials)
 
 

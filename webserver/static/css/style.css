@@ -1,0 +1,102 @@
+.clearfix {
+  clear: right;
+  clear: left;
+  overflow: hidden;
+}
+.block {
+  display: block;
+}
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ol li,
+ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+img {
+  max-width: 100%;
+  -webkit-backface-visibility: hidden;
+}
+::-webkit-input-placeholder {
+  color: #6e6e6e;
+  font-size: 0.9em;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #6e6e6e;
+  font-size: 0.9em;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #6e6e6e;
+  font-size: 0.9em;
+}
+:-ms-input-placeholder {
+  color: #6e6e6e;
+  font-size: 0.9em;
+}
+/* 
+TERESA ALVES | trezalves.com/Jekyll
+*/
+html {
+  font-size: 1em;
+  background-color: #ededed;
+  margin: 0;
+  padding: 0;
+}
+html body {
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #be1c1c;
+}
+a:hover,
+a:focus,
+a:active {
+  color: #650f0f;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+}
+/* Block Background Colors */
+#header {
+  background: #e0e0e0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 2em 0;
+}
+#footer {
+  background: #e0e0e0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 2em 0;
+}
+#footer ul.team li .photo {
+  padding: 2em;
+}
+#footer ul.team li .photo img {
+  display: block;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+  max-width: 100%;
+  height: auto;
+}
+#footer ul.team li p {
+  text-align: center;
+}
+#footer ul.team li p.highlight {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+  font-size: 1.5em;
+}
