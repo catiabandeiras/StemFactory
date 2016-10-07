@@ -64,6 +64,7 @@ class BaseViewManager(object):
 
 
     def render_full_simulation(self, data):
+        data['hidePanels'] = True
         return self.renderer.render(self.pages.get('simulation.full'), data, self.partials)
 
 

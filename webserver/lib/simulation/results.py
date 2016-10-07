@@ -10,6 +10,7 @@ class SimulationResults(object):
         self.donors = []
         self.costStructure = SimulationCostStructure()
         self.events = []
+        self.balance = 0
 
 
     def add_donor_results(self, spentDays, totalDoses, totalLots):

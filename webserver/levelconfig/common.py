@@ -1,11 +1,47 @@
 # -*- coding: utf-8 -*-
 
-cells = {}
+cocktails = [
+    {
+        'name': 'Cocktail A',
+        'img': 'cocktail1.png',
+        'price': 150, #Eur / L
+        'growth': 0.2, # 20% per day
+        'growthParameters': "[0.21, 0.20, 0.18]", #json
+        'fieldId': 'GR_P',
+    },
+    {
+        'name': 'Cocktail B',
+        'img': 'cocktailB.png',
+        'price': 210, #Eur / L
+        'growth': 0.25, # 25% per day
+        'growthParameters': "[0.27, 0.25, 0.20]", #json
+        'fieldId': 'GR_P',
+    }
+]
 
-cells['A'] = {
-    'img': 'cell1.xpto'
-}
 
-cells['B'] = {
-    'img': 'cell2.xpto',
-}
+
+market = [
+    {
+        'name': 'Incubator',
+        'tooltip': '',
+        'img': '',
+        'fieldId': 'TOTAL_INCUBATORS',
+        'price': 15000
+    },
+    {
+        'name': 'Worker',
+        'tooltip': 'operates the equipment',
+        'img': '',
+        'fieldId': 'TOTAL_WORKERS',
+        'price': 1000,
+        'priceDescription': '50€/day'
+    },
+    {
+        'name': 'Safety Cabinet',
+        'tooltip': '',
+        'img': '',
+        'fieldId': 'TOTAL_BSC',
+        'price': 12000
+    }
+]

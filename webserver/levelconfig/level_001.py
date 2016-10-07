@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 # import configuration of assets
-#from levelconfig.common import cells.cellA, cells.cellB
+from levelconfig.common import market, cocktails
+
 
 # base input fields
 config = {
@@ -172,9 +173,22 @@ config['level'] = {
 }
 
 #interactions permitted in level
-config['interactions'] = {
-    'shopping': ['cellA', 'cellB']
-}
+config['interactions'] = [
+    {
+        'order': 1,
+        'itemTypes': 'assets',
+        'title': 'Market',
+        'description': 'Buy more equipment, contract workers',
+        'items': [market[0], market[1], market[2]],
+    },
+    {
+        'order': 2,
+        'itemTypes': 'consumables',
+        'title': 'Cocktails',
+        'description': 'Choose the cocktail you think will work best for the stated problem',
+        'items': [cocktails[0], cocktails[1]]
+    }
+]
 
 #starting values that carry from previous level
 config['history'] = {
@@ -184,5 +198,5 @@ config['history'] = {
     'TOTAL_INCUBATORS': 1,
     'TOTAL_BIOREACTORS': 1,
 
-    'balance': 0
+    'balance': 50000
 }
