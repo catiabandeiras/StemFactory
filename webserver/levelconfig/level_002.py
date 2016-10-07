@@ -165,14 +165,27 @@ config = {
 
 
 config['level'] = {
-    'number': 1,
+    'number': 2,
     'title': 'This is a title',
     'description': "Let's cure your first pacient",
     'instructions': 'choose between cells A and B and try to obatin a profit',
 }
 
-#interactions permitted in level
-config['interactions'] = {
-    'shopping': ['cellA', 'cellB']
-}
 
+#interactions permitted in level
+config['interactions'] = [
+    {
+        'order': 1,
+        'itemTypes': 'assets',
+        'title': 'Market',
+        'description': 'Buy more equipment, contract workers',
+        'items': [market[0], market[1], market[2]],
+    },
+    {
+        'order': 2,
+        'itemTypes': 'consumables',
+        'title': 'Cocktails',
+        'description': 'Choose the cocktail you think will work best for the stated problem',
+        'items': [cocktails[0], cocktails[2]]
+    }
+]

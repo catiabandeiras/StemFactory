@@ -7,24 +7,26 @@
 <ul>
     {{#donors}}
     <li>
-        Days ppent: {{spentDays}}
+        Days spent: {{spentDays}}
         Total doses: {{totalDoses}}
         Total lots: {{totalLots}}
     </li>
     {{/donors}}
 </ul>
 
+{{#costStructure}}
 <h4>Cost Structure</h4>
 <ul>
-    <li><span class="label">Expand Technology</span> {{expandTechnology}}</li>
-    <li><span class="label">Reagent</span> {{reagent}}</li>
-    <li><span class="label">Labor</span> {{labor}}</li>
-    <li><span class="label">Facility</span> {{facility}}</li>
-    <li><span class="label">Equipment Usage</span> {{equipmentUsage}}</li>
-    <li><span class="label">Quality Control</span> {{qualityControl}}</li>
-    <li><span class="label">Total Cost</span> {{totalCost}}</li>
-    <li><span class="label">Cost Per Dose</span> {{costPerDose}}</li>
+    <li><span class="result-label">Expand Technology</span> {{expandTechnology}}</li>
+    <li><span class="result-label">Reagent</span> {{reagent}}</li>
+    <li><span class="result-label">Labor</span> {{labor}}</li>
+    <li><span class="result-label">Facility</span> {{facility}}</li>
+    <li><span class="result-label">Equipment Usage</span> {{equipmentUsage}}</li>
+    <li><span class="result-label">Quality Control</span> {{qualityControl}}</li>
+    <li><span class="result-label">Total Cost</span> {{totalCost}}</li>
+    <li><span class="result-label">Cost Per Dose</span> {{costPerDose}}</li>
 </ul>
+{{/costStructure}}
 
 <h4>Events</h4>
 <ul>

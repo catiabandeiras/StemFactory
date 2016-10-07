@@ -190,13 +190,7 @@ config['interactions'] = [
     }
 ]
 
-#starting values that carry from previous level
-config['history'] = {
-    'AREA_FACILITY': 400,
-    'TOTAL_WORKERS': 1,
-    'TOTAL_BSC': 1,
-    'TOTAL_INCUBATORS': 1,
-    'TOTAL_BIOREACTORS': 1,
 
+config['successBonus'] = {
     'balance': 50000
 }
