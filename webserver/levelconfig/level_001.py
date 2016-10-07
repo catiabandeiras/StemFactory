@@ -91,7 +91,7 @@ config = {
                     'id': 'INITIAL_CELLS_PER_DONOR_AVG',
                     'label': 'Average initial cells per donor',
                     'hidden': True,
-                    'value': 1.05e6
+                    'value': 1050000
                 },
                 {
                     'id': 'INITIAL_CELLS_PER_DONOR_SD',
