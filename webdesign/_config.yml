@@ -1,0 +1,14 @@
+
+# Título e descrição do site - SEO
+title: stemFactory
+description: Cenas sobre stemFactory
+
+
+# Para que as páginas não tenham ".html" no browser
+permalink: pretty
+
+
+# Pastas e ficheiros que não queremos incluir no site final
+exclude: ['config.codekit','README.md','_less','_site', 'assets']
+
+# baseurl: StemFactory/frontEnd

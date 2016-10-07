@@ -1,0 +1,18 @@
+<ul class="parameter-list" id="{{id}}-panel">
+{{#params}}
+    <li class="parameter">
+    {{#hidden}}
+        {{> hidden_field}}
+    {{/hidden}}
+
+    {{^hidden}}
+        {{#combobox}}
+            {{> combobox_field}}
+        {{/combobox}}
+        {{^combobox}}
+            {{> text_field}}
+        {{/combobox}}
+    {{/hidden}}
+    </li>
+{{/params}}
+</ul>
