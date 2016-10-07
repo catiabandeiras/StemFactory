@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+startingBalance = 50000
+
 cocktails = [
     {
         'name': 'Cocktail A',
@@ -43,5 +45,20 @@ market = [
         'img': '',
         'fieldId': 'TOTAL_BSC',
         'price': 12000
+    },
+    {
+        'name': 'Bioreactor',
+        'tooltip': '',
+        'img': '',
+        'fieldId': 'TOTAL_BIOREACTORS',
+        'price': 56000
     }
 ]
+
+def get_asset(fieldId):
+
+    for item in market:
+        if fieldId == item['fieldId']:
+            return item
+
+    raise Exception("Item Not Found {}".format(fieldId))

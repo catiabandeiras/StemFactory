@@ -49,7 +49,7 @@ config = {
                     'id': 'TOTAL_BIOREACTORS',# carry
                     'label': 'Number of bioreactor systems',
                     'hidden': True,
-                    'value': 1
+                    'value': 0
                 }
             ]
         },

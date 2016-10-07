@@ -106,3 +106,7 @@ class SimulationParams(object):
                     tval = float(value)
 
                 self.__dict__[key] = tval
+
+
+    def get_param(self, name):      return self.__dict__[name]
+    def set_param(self, name, val):        self.__dict__[name] = val
