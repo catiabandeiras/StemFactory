@@ -40,6 +40,14 @@ img {
   color: #6e6e6e;
   font-size: 0.9em;
 }
+.btn-primary {
+  background-color: #0AB0C9;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #088598;
+}
 /* 
 TERESA ALVES | trezalves.com/Jekyll
 */
@@ -54,12 +62,12 @@ html body {
   padding: 0;
 }
 a {
-  color: #be1c1c;
+  color: #0AB0C9;
 }
 a:hover,
 a:focus,
 a:active {
-  color: #650f0f;
+  color: #055b68;
 }
 h1,
 h2,
@@ -72,9 +80,49 @@ h6 {
 }
 /* Block Background Colors */
 #header {
-  background: #e0e0e0;
+  background: #0AB0C9;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 2em 0;
+}
+#header h1 {
+  margin: 0;
+  font-size: 26px;
+}
+#header h1 a {
+  color: #f9f9f9;
+  padding: 10px 0;
+  display: block;
+}
+#header h1 a:hover,
+#header h1 a:focus {
+  opacity: 0.7;
+}
+#header .site-description {
+  color: #f9f9f9;
+}
+#header ul.nav {
+  text-align: right;
+}
+#header ul.nav li {
+  display: inline-block;
+}
+#header ul.nav li a {
+  font-size: 1.5em;
+  color: #f9f9f9;
+  border-bottom: 2px solid transparent;
+}
+#header ul.nav li a:hover,
+#header ul.nav li a:focus {
+  background: rgba(0, 0, 0, 0.1);
+}
+#header ul.nav li a.active {
+  border-bottom: 2px solid #f9f9f9;
+}
+#header:not(.homepage) {
+  padding: 0;
+}
+#header:not(.homepage) .site-description {
+  display: none;
 }
 #footer {
   background: #e0e0e0;
@@ -99,4 +147,13 @@ h6 {
   font-family: 'Roboto Slab', serif;
   font-weight: 400;
   font-size: 1.5em;
+}
+.footer2 {
+  background: #0AB0C9;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.footer2 .copyright {
+  text-align: center;
+  padding: 1em 0;
+  color: #f9f9f9;
 }
