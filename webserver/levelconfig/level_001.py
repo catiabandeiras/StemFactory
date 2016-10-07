@@ -91,7 +91,7 @@ config = {
                     'id': 'INITIAL_CELLS_PER_DONOR_AVG',
                     'label': 'Average initial cells per donor',
                     'hidden': True,
-                    'value': 1.05e6
+                    'value': 1050000
                 },
                 {
                     'id': 'INITIAL_CELLS_PER_DONOR_SD',
@@ -144,7 +144,7 @@ config = {
                     'id': 'CELL_NUMBER_PER_DOSE',
                     'label': 'Cell number per dose',
                     'hidden': True,
-                    'value': 75e6
+                    'value': 75000000
                 },
                 {
                     'id': 'ANNUAL_DEMAND',
