@@ -84,9 +84,19 @@ def labsetup(env,gui,int_db):
 
                 continue
 
-    #Prints how many doses and lots produced
+        if lab.total_doses == gui.ANNUAL_DEMAND:
 
-    print('Annual demand reached!')
+            #Prints how many doses and lots produced
+
+            print('Annual demand reached!')
+
+            dose_lot_print(env,lab,gui)
+
+            #Print the costs
+
+            final_cost_info(env,lab,gui,int_db)
+
+            break
 
     while True:
 
