@@ -162,6 +162,15 @@ h6 {
   padding-top: 2em;
   padding-bottom: 2em;
 }
+.container .jumbotron {
+  padding: 0 !important;
+  background: transparent;
+}
+.container .jumbotron p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+}
 .footer2 {
   background: #0AB0C9;
   border-top: 1px solid rgba(0, 0, 0, 0.1);

@@ -69,6 +69,7 @@ class SimulationParams(object):
         self.CELL_NUMBER_PER_DOSE = 75e6 # in millions
         self.ANNUAL_DEMAND = 1 # doses / year
         self.LOT_SIZE = 1 #doses / lot
+        self.MAX_SIM_TIME = 10 #Number of days to reach the end goal
 
         self.types = {
             'TYPE_OF_ET': str,
@@ -77,6 +78,7 @@ class SimulationParams(object):
             'TYPE_OF_MEDIA' : str,
             'TOTAL_WORKERS': int,
             'MAX_NO_PASSAGES': int,
+            #Update the other types of passages
         }
 
         #fake text
