@@ -144,7 +144,7 @@ config = {
                     'id': 'CELL_NUMBER_PER_DOSE',
                     'label': 'Cell number per dose',
                     'hidden': True,
-                    'value': 75e6
+                    'value': 75000000
                 },
                 {
                     'id': 'ANNUAL_DEMAND',
