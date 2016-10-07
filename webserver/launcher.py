@@ -56,6 +56,7 @@ class Home(object):
     def scenarios(self, **kwargs):
         """scenarios / levels - there are vars that will be carried over from one level to the other."""
 
+        print (kwargs)
         level = kwargs.get('level') or 1
         if level == 1:
             self.__initializeSession()
@@ -63,6 +64,7 @@ class Home(object):
         print ("loading level", level)
         data = get_level_config('level_{:0>3}'.format(level))
 
+        cherrypy.session['level'] = level
         return self.viewManager.render_level(level, data)
 
 
@@ -82,20 +84,33 @@ class Home(object):
 #        print ("Sim Result", self.simulationResult)
 
         try:
-            old_balance = int(kwargs.get('balance'))
+            old_balance = cherrypy.session['balance']#int(kwargs.get('balance'))
         except:
-            old_balance = 0 #initial balance
+            old_balance = 0 #fail?
+
+        self.simulationResult.set_balance(self.simulationParams.NET_PROFIT)
+
         new_balance = old_balance + self.simulationParams.NET_PROFIT
-        self.simulationResult.balance = new_balance
+        cherrypy.session['balance'] = new_balance
 
         if new_balance < 0: return self.viewManager.render_bankrupt(self.simulationResult)
 
         #self.simulationResult.next_level = int(kwargs.get('level')) + 1
-        data = {'params': self.simulationParams, 'results': self.simulationResult}
+
+        currentLevel = cherrypy.session['level']
+        data = {
+            'params': self.simulationParams,
+            'results': self.simulationResult,
+            'nextlevel': currentLevel + 1
+        }
+
         if self.simulationParams.NET_PROFIT <= 0:
             self.viewManager.render_loss(data)
         #elif major profit(2 stars, 3 stars a la angry birds based on a fixed value per level?)
         else: # profit
+            levelConfig = get_level_config('level_{:0>3}'.format(level))
+            data['successBonus'] = levelConfig['successBonus']['balance']
+            cherrypy.session['balance']+= data['successBonus']
             return self.viewManager.render_profit(data)
 
 
@@ -110,6 +125,7 @@ class Home(object):
         #env.run(until=365.25) # a year
 #        env.run(until=simulationParams.MAX_SIM_TIME) # a month <- make this variable
         env.run(until=60) # a month <- make this variable
+
         return simulationParams.results
 
 

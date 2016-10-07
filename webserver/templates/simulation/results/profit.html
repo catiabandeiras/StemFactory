@@ -9,16 +9,11 @@
 
 {{> results_summary}}
 
-
-<form action="retry_level" method="GET">
-
-
-{{> repeat_variables}}
-
+<p>You will receive a bonus of {{successBonus}}€ for the next operation.</p>
 
 <input type="submit" name="Retry" value="Retry" />
 
-<a href="scenarios">Restart</a>
+<a href="restart_level">Restart</a>
 <a href="scenarios?level={{nextlevel}}">Next Level</a>
 
 </form>
