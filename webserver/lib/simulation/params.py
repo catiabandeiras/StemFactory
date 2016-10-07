@@ -78,6 +78,7 @@ class SimulationParams(object):
             'TYPE_OF_MEDIA' : str,
             'TOTAL_WORKERS': int,
             'MAX_NO_PASSAGES': int,
+            #Update the other types of passages
         }
 
         #fake text
