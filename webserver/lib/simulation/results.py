@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import math
+
 from lib.simulation.donor_results  import SimulationDonorResults
 from lib.simulation.cost_structure import SimulationCostStructure
 from lib.simulation.event          import SimulationEvent
@@ -17,7 +19,9 @@ class SimulationResults(object):
 
     def add_donor_results(self, spentDays, totalDoses, totalLots):
 
-        self.donors.append(SimulationDonorResults(spentDays, totalDoses, totalLots))
+        self.donors.append(SimulationDonorResults(
+            math.ceil(spentDays), totalDoses, totalLots
+        ))
 
 
     def append_event(self, simTime, eventName):
@@ -26,12 +30,14 @@ class SimulationResults(object):
 
 
     def set_costs(self, exp_tech, reagent, labor, facility, equipment, qualityControl, total, perDose):
-        self.costStructure.expandTechnology = exp_tech
-        self.costStructure.reagent          = reagent
-        self.costStructure.labor            = labor
-        self.costStructure.facility         = facility
-        self.costStructure.equipmentUsage   = equipment
-        self.costStructure.qualityControl   = qualityControl
-        self.costStructure.totalCost        = total
-        self.costStructure.costPerDose      = perDose
+        self.costStructure.expandTechnology = round(exp_tech, 2)
+        self.costStructure.reagent          = round(reagent, 2)
+        self.costStructure.labor            = round(labor, 2)
+        self.costStructure.facility         = round(facility, 2)
+        self.costStructure.equipmentUsage   = round(equipment, 2)
+        self.costStructure.qualityControl   = round(qualityControl, 2)
+        self.costStructure.totalCost        = round(total, 2)
+        self.costStructure.costPerDose      = round(perDose, 2)
 
+    def set_balance(self, balance):
+        self.balance = round(balance, 2)

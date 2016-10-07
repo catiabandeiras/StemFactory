@@ -18,7 +18,16 @@ cocktails = [
         'growth': 0.25, # 25% per day
         'growthParameters': "[0.27, 0.25, 0.20]", #json
         'fieldId': 'GR_P',
+    },
+    {
+        'name': 'Cocktail C',
+        'img': 'bottle-pink.png',
+        'price': 100, #Eur / L
+        'growth': 0.15, # 25% per day
+        'growthParameters': "[0.17, 0.15, 0.12]", #json
+        'fieldId': 'GR_P',
     }
+
 ]
 
 
