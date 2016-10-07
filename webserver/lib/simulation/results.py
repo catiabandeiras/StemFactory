@@ -4,6 +4,7 @@ from lib.simulation.donor_results  import SimulationDonorResults
 from lib.simulation.cost_structure import SimulationCostStructure
 from lib.simulation.event          import SimulationEvent
 
+
 class SimulationResults(object):
 
     def __init__(self):

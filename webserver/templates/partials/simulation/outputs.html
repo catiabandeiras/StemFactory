@@ -1,20 +1,41 @@
 
-{{^ajax}}
-{{> page_start}}
-{{/ajax}}
+<h3>Simulation Results</h3>
 
-<form action="simulation_submit" method="POST">
+<h4>Donors data</h4>
+<ul>
+    {{#donors}}
+    <li>
+        Days ppent: {{spentDays}}
+        Total doses: {{totalDoses}}
+        Total lots: {{totalLots}}
+    </li>
+    {{/donors}}
+</ul>
+
+<h4>Cost Structure</h4>
+<ul>
+    <li><span class="label">Expand Technology</span> {{expandTechnology}}</li>
+    <li><span class="label">Reagent</span> {{reagent}}</li>
+    <li><span class="label">Labor</span> {{labor}}</li>
+    <li><span class="label">Facility</span> {{facility}}</li>
+    <li><span class="label">Equipment Usage</span> {{equipmentUsage}}</li>
+    <li><span class="label">Quality Control</span> {{qualityControl}}</li>
+    <li><span class="label">Total Cost</span> {{totalCost}}</li>
+    <li><span class="label">Cost Per Dose</span> {{costPerDose}}</li>
+</ul>
+
+<h4>Events</h4>
+<ul>
+    {{#events}}
+    <li class="event">
+        <p></p>
+    </li>
+    {{/events}}
+</ul>
+
+<div class="balance-container">
+    <p class="balance-label">Balance</p>
+    <p class="balance-value">{{balance}}</p>
+</div>
 
 
-{{#panels}}
-{{> panel_content}}
-{{/panels}}
-
-<input type="submit" />
-<input type="reset" />
-
-</form>
-
-{{^ajax}}
-{{> page_end}}
-{{/ajax}}
