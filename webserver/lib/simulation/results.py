@@ -8,6 +8,7 @@ class SimulationResults(object):
 
     def __init__(self):
         self.donors = []
+        self.events = []
         self.costStructure = SimulationCostStructure()
 
 
@@ -18,7 +19,7 @@ class SimulationResults(object):
 
     def append_event(self, simTime, eventName):
 
-        self.events.append(SimulationResultEvent(simTime, eventName))
+        self.events.append(SimulationEvent(simTime, eventName))
 
 
     def set_costs(self, exp_tech, reagent, labor, facility, equipment, qualityControl, total, perDose):
