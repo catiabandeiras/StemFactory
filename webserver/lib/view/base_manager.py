@@ -20,13 +20,18 @@ class BaseViewManager(object):
     def load_templates(self):
         self.pages = {
             'homepage':             get_web_template('homepage'),
-            'simulation.result':    get_web_template('simulation/results/profit'),
-            'simulation.full':      get_web_template('simulation/full'),
+
             'not-implemented-yet':  get_web_template('not-implemented-yet'),
             'message':              get_web_template('message'),
-            'level.1':              get_web_template('levels/level_1'),
-            'level.2':              get_web_template('levels/level_2'),
 
+            'simulation.full':      get_web_template('simulation/full'),
+            'scenario':             get_web_template('simulation/scenario'),
+
+            'bankrupt':             get_web_template('simulation/results/bankrupt'),
+            'loss':                 get_web_template('simulation/results/loss'),
+            'profit':               get_web_template('simulation/results/profit'),
+
+            'level':                get_web_template('simulation/scenario'),
         }
 
         self.partials = {
@@ -41,6 +46,8 @@ class BaseViewManager(object):
             'hidden_field':         get_partial_template('fields/hidden'),
             'combobox_field':       get_partial_template('fields/combobox'),
             'text_field':           get_partial_template('fields/text'),
+
+            'results_summary':      get_partial_template('simulation/outputs'),
         }
 
         self.renderer = pystache.Renderer(partials=self.partials)
@@ -54,11 +61,17 @@ class BaseViewManager(object):
 
 
     def render_homepage(self, data):
+        data['bodyClass'] = 'homepage'
         return self.renderer.render(self.pages.get('homepage'), data, self.partials)
 
 
     def render_full_simulation(self, data):
+        data['hidePanels'] = True
         return self.renderer.render(self.pages.get('simulation.full'), data, self.partials)
+
+
+    def render_level(self, data):
+        return self.renderer.render(self.pages.get('simulation.level'), data, self.partials)
 
 
     def render_simulation_result(self, data):
@@ -66,7 +79,8 @@ class BaseViewManager(object):
 
 
     def render_level(self, levelNo, data):
-        return self.renderer.render(self.pages.get('level.' + levelNo), data, self.partials)
+        #return self.renderer.render(self.pages.get('level.{}'.format(levelNo)), data, self.partials)
+        return self.renderer.render(self.pages.get('level'), data, self.partials)
 
     def NIY(self): return self.renderer.render(self.pages.get('not-implemented-yet'), {}, self.partials)
 

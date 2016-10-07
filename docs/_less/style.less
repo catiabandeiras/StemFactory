@@ -1,0 +1,136 @@
+@import "x_reset.less";
+@import "x_variables.less";
+@import "x_mixins.less";      
+///////////////////////////////////////
+
+/* 
+TERESA ALVES | trezalves.com/Jekyll
+*/
+
+///////////////////////////////////////
+html { 
+	font-size:1em; 
+	background-color:@lighter-grey; 
+	.no-space-around();
+	body {
+		.no-space-around();
+	}
+}
+
+a {
+	color:@main-color;
+	&:hover, &:focus, &:active {
+		color:darken(@main-color,20%); 
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+	.titles-font();
+}
+
+///////////////////////////////////////
+/* Block Background Colors */
+///////////////////////////////////////
+#header {
+	background:@main-color;
+	border-bottom:@dark-border;
+
+	h1 {
+		margin:0; 
+		a {
+			color:@almost-white;
+			padding: 10px 0;
+			display: block;
+			&:hover, &:focus {
+				opacity:0.7;
+			}
+		}
+	}
+	.site-description { color:@almost-white; }
+
+	ul.nav {
+		text-align:right;
+		li {
+			display:inline-block;
+			a {
+				font-size:1.5em;
+				color:@almost-white;
+				border-bottom:2px solid transparent;
+
+				&:hover, &:focus {
+					background:rgba(0,0,0,0.1);
+				}
+				&.active {
+					border-bottom:2px solid @almost-white;
+				}
+			}
+		}
+	}
+
+	&:not(.homepage) {
+
+		h1 {
+			font-size:26px;
+			a {
+				padding:10px 0;
+			}
+		}
+		.site-description {display:none; }
+	}
+
+	&.homepage {
+		h1 { 
+			font-size:36px; 
+			a {
+				padding:20px 0;
+			}
+		}
+		ul.nav {
+			padding-top:15px;
+		}
+	}
+}
+
+#footer {
+	background:@light-grey;
+	border-top:@dark-border;
+	padding:2em 0;
+
+	ul.team {
+		li {
+			.photo {
+				padding:2em;
+				img {
+					display:block;
+					.round-border();
+					max-width:100%; height:auto;
+				}
+			}
+			p {
+				text-align:center;
+				&.highlight {
+					.titles-font();
+					font-size:1.5em;
+				}
+			}
+		}
+	}
+}
+
+
+.contentBox {
+	padding-top:2em; padding-bottom:2em;
+}
+
+
+.footer2 {
+	background:@main-color;
+	border-top:@dark-border;
+	.copyright {
+		text-align:center; padding:1em 0;
+		color:@almost-white;
+	}
+
+}
+
+

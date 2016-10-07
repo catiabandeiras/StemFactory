@@ -145,9 +145,30 @@ def finish_simulation(env,lab,gui,donor,donor_index,clause):
 
         print('Final passage allowed reached')
 
+        gui.results.append_event(env.now, "Max_Passages_reached")
+
         number_doses_per_donor = math.floor(donor.final_cells_passage[donor.passage_no-1]/gui.CELL_NUMBER_PER_DOSE)
 
         final_passage_no = donor.passage_no
+
+    elif clause == 'maxcpd':
+
+        print('Maximum number of CPDs reached. Break simulation.')
+
+        gui.results.append_event(env.now, "Max_CPD_reached")
+
+        number_doses_per_donor = math.floor(donor.final_cells_passage[donor.passage_no-1]/gui.CELL_NUMBER_PER_DOSE)
+
+        final_passage_no = donor.passage_no
+
+    elif clause == 'maxtime':
+
+        print('Maximum simulation time allowed reached. Break simulation')
+
+        number_doses_per_donor = math.floor(donor.final_cells_passage[donor.passage_no-1]/gui.CELL_NUMBER_PER_DOSE)
+
+        final_passage_no = donor.passage_no
+
 
     donor.doses_per_donor += number_doses_per_donor
 
@@ -405,8 +426,8 @@ def donor_launch(env,lab,gui,donor,donor_index,int_db):
             print ("Donor {} - Passage No increased to {}".format( donor, donor.passage_no))
         yield env.timeout(0.0001)
 
-    if donor.passage_no == gui.MAX_NO_PASSAGES:
-        gui.results.append_event(env.now, "Max_Passages_reached")
+    # if donor.passage_no > gui.MAX_NO_PASSAGES:
+    #     gui.results.append_event(env.now, "Max_Passages_reached")
 
     if donor.cpds > gui.MAXIMUM_NUMBER_CPD:
         gui.results.append_event(env.now, "Max_CPD_reached")
