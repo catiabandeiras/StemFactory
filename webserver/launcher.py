@@ -58,14 +58,18 @@ class Home(object):
 
         print (kwargs)
         level = kwargs.get('level') or 1
+        level = int(level)
         if level == 1:
             self.__initializeSession()
 
         print ("loading level", level)
-        data = get_level_config('level_{:0>3}'.format(level))
+        levelConfig = get_level_config('level_{:0>3}'.format(level))
+
+        for assetId in ['TOTAL_WORKERS', 'TOTAL_BSC', 'TOTAL_INCUBATORS', 'TOTAL_BIOREACTORS']:
+            CommonLevelConfig.set_param(levelConfig, 'factory', assetId, cherrypy.session[assetId])
 
         cherrypy.session['level'] = level
-        return self.viewManager.render_level(level, data)
+        return self.viewManager.render_level(levelConfig)
 
 
     @cherrypy.expose
@@ -108,7 +112,7 @@ class Home(object):
             self.viewManager.render_loss(data)
         #elif major profit(2 stars, 3 stars a la angry birds based on a fixed value per level?)
         else: # profit
-            levelConfig = get_level_config('level_{:0>3}'.format(level))
+            levelConfig = get_level_config('level_{:0>3}'.format(currentLevel))
             data['successBonus'] = levelConfig['successBonus']['balance']
             cherrypy.session['balance']+= data['successBonus']
             return self.viewManager.render_profit(data)

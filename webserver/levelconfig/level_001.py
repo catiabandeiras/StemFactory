@@ -194,3 +194,5 @@ config['interactions'] = [
 config['successBonus'] = {
     'balance': 50000
 }
+
+

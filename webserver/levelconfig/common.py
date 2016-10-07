@@ -71,3 +71,25 @@ def get_asset(fieldId):
             return item
 
     raise Exception("Item Not Found {}".format(fieldId))
+
+
+
+def find_panel(config, panelId):
+    for panel in config['panels']:
+        if panel['id'] == panelId: return panel
+
+
+def find_param(panel, paramId):
+    for param in panel['params']:
+        if param['id'] == paramId: return param
+
+
+def set_param(config, panelId, paramId, value):
+    panel = find_panel(config, panelId)
+    if panel is None: return
+
+    param = find_param(panel, paramId)
+    if param is None: return
+
+    param['value'] = value
+
