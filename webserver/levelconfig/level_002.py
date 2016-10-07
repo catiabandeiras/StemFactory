@@ -3,6 +3,10 @@
 # import configuration of assets
 #from levelconfig.common import cells.cellA, cells.cellB
 
+
+from levelconfig.common import market, cocktails
+
+
 # base input fields
 config = {
     'panels': [

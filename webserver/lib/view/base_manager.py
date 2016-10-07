@@ -81,14 +81,18 @@ class BaseViewManager(object):
     def render_profit(self, data):
         return self.renderer.render(self.pages.get('profit'), data, self.partials)
 
+
     def render_loss(self, data):
         return self.renderer.render(self.pages.get('loss'), data, self.partials)
 
 
-    def render_level(self, levelNo, data):
-        #return self.renderer.render(self.pages.get('level.{}'.format(levelNo)), data, self.partials)
+    def render_bankrupt(self, data):
+        return self.renderer.render(self.pages.get('bankrupt'), data, self.partials)
+
+
+
+    def render_level(self, data):
         return self.renderer.render(self.pages.get('level'), data, self.partials)
 
-    def NIY(self): return self.renderer.render(self.pages.get('not-implemented-yet'), {}, self.partials)
 
 

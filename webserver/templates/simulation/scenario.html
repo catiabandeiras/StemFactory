@@ -3,16 +3,101 @@
 {{> page_start}}
 {{/ajax}}
 
-{{#level}}
-    <input type="hidden" id="level" value="{{number}}" />
-    <p class="levelNumber">{{number}}</p>
-    <p class="title">{{title}}</p>
-    <p class="description">{{description}}</p>
-    <div class="instruction">{{instructions}}</div>
-{{/level}}
+<div class="container">
+    <div class="simulator">
+
+        {{#level}}
+        <div id="sim-welcome-ctn" class="jumbotron">
+            <h2 id="sim-welcome-msg">Level {{number}} - {{title}}</h2>
+            <p id="sim-welcome-desc">{{description}}</p>
+            <div id="sim-instructions">
+                {{{instructions}}}
+            </div>
+            <p id="sim-welcome-start-btn-ctn"><a id="sim-welcome-start-btn" class="btn btn-primary btn-lg" href="#" role="button">Start Simulation</a></p>
+        </div>
+        {{/level}}
 
 
-{{#interactions}}
+
+        {{#interactions}}
+        <div id="sim-step{{order}}-ctn">
+
+            <div class="row">
+                <h2>{{title}}</h2>
+                <p class="interaction-description">{{description}}</p>
+            </div>
+
+            <div class="row">
+                {{#items}}
+                <div class="cellBlock col-md-3">
+                    <div class="innerCell">
+                        <div class="row imgRow">
+                             <img class="img-responsive" src="/static/img/{{img}}" />
+                        </div>
+
+                        <div class="row">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <h4>{{name}} <span id="sim-s{{order}}-{{id}}-credits" class="badge">{{amount}}</span></h4>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <h3 class="panel-title">
+                                                <a id="sim-s{{order}}-{{id}}-credit-sub" href="#" class="btn btn-warning check-next-step">
+                                                    <strong>- 1</strong>
+                                                </a>
+                                                <a id="sim-s{{order}}-{{id}}-credit-add" href="#" class="btn btn-success check-next-step">
+                                                    <strong>+ 1</strong>
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body" id="{{id}}-value" data-price="{{price}}">
+                                    <h4>{{price}}&euro; per unit</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/items}}
+
+                <div class="cellBlock col-md-3">
+                    <div class="innerCell">
+                        <div class="row imgRow">
+                             <img class="img-responsive budget" src="/static/img/budget.png" />
+                        </div>
+
+                        <div class="row">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <h4>Total Investment</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <h4 id="sim-total">50000&euro;</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a id="sim-s1-next-btn" href="#" class="btn btn-default btn-lg">Next Step</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+<!--
     <div class="interation" data-order="{{order}}">
         <p class="interaction-title">{{title}}</p>
         <p class="interaction-description">{{description}}</p>
@@ -30,7 +115,11 @@
         </ul>
 
     </div>
-{{/interactions}}
+
+-->
+        {{/interactions}}
+    </div>
+</div>
 
 
 <form action="simulation_submit" method="POST">
@@ -38,6 +127,7 @@
     <input type="hidden" id="level" name="level" value="{{number}}" />
 {{/level_comment}}
 
+    <input type="hidden" id="balance" name="balance" value="{{balance}}" />
 {{#panels}}
 {{> panel_content}}
 {{/panels}}
