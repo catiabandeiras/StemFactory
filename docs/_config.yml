@@ -12,3 +12,5 @@ permalink: pretty
 exclude: ['config.codekit','README.md','_less','_site', 'assets']
 
 # baseurl: StemFactory/frontEnd
+
+destination: _site-trz
