@@ -62,6 +62,57 @@ html body {
   padding: 0;
   padding-bottom: 50px;
 }
+html body .loaderBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+html body .loaderBox .loader {
+  text-indent: -9999em;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.05);
+  border-left-color: rgba(0, 0, 0, 0.25);
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: spin 1s infinite linear;
+  animation: spin 1s infinite linear;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+  border-width: 16px;
+  width: 180px;
+  height: 180px;
+  top: 50%;
+  margin-top: -90px;
+  left: 50%;
+  margin-left: -90px;
+}
+html body .loaderBox .loader:after {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
 a {
   color: #0AB0C9;
 }
@@ -78,6 +129,13 @@ h5,
 h6 {
   font-family: 'Roboto Slab', serif;
   font-weight: 400;
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
 }
 /* Block Background Colors */
 #header {
@@ -171,6 +229,28 @@ h6 {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 18px;
+  max-width: 750px;
+  margin: 0 auto;
+}
+.container .cellBlock .innerCell {
+  margin: 1em;
+}
+.container img.img-responsive {
+  max-width: 70%;
+  display: block;
+  margin: 0 auto;
+}
+.container img.img-responsive.img-responsive2 {
+  max-width: 35%;
+}
+.container .inline-block {
+  display: block;
+}
+.container .inline-block.left {
+  float: left;
+}
+.container .inline-block.right {
+  float: right;
 }
 .footer2 {
   position: fixed;

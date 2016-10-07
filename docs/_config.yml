@@ -9,7 +9,7 @@ permalink: pretty
 
 
 # Pastas e ficheiros que não queremos incluir no site final
-exclude: ['config.codekit','README.md','_less','_site', 'assets']
+exclude: ['config.codekit','README.md','_less','_site', 'aside-assets']
 
 # baseurl: StemFactory/frontEnd
 

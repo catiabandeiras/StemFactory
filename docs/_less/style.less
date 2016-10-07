@@ -15,6 +15,15 @@ html {
 	body {
 		.no-space-around();
 		padding-bottom:50px;
+
+		.loaderBox {
+			position:fixed;
+			top:50%; 
+			left:50%;
+			.loader {
+				.sf-loader();
+			}
+		}
 	}
 }
 
@@ -27,6 +36,9 @@ a {
 
 h1, h2, h3, h4, h5, h6 {
 	.titles-font();
+}
+h2, h3, h4, h5, h6 {
+	text-align:center;
 }
 
 ///////////////////////////////////////
@@ -130,6 +142,27 @@ h1, h2, h3, h4, h5, h6 {
 	}
 	p {
 		.content-font();
+		max-width:750px;
+		margin:0 auto;
+	}
+	.cellBlock {
+		.innerCell {
+			margin:1em;
+		}
+	}
+	img.img-responsive {
+		max-width:70%;
+		display:block;
+		margin:0 auto;
+
+		&.img-responsive2 {
+			max-width:35%;
+		}
+	}
+	.inline-block {
+		display:block;
+		&.left { float:left; }
+		&.right { float:right; }
 	}
 }
 
