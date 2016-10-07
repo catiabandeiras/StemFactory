@@ -82,11 +82,9 @@ h6 {
 #header {
   background: #0AB0C9;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 2em 0;
 }
 #header h1 {
   margin: 0;
-  font-size: 26px;
 }
 #header h1 a {
   color: #f9f9f9;
@@ -118,11 +116,23 @@ h6 {
 #header ul.nav li a.active {
   border-bottom: 2px solid #f9f9f9;
 }
-#header:not(.homepage) {
-  padding: 0;
+#header:not(.homepage) h1 {
+  font-size: 26px;
+}
+#header:not(.homepage) h1 a {
+  padding: 10px 0;
 }
 #header:not(.homepage) .site-description {
   display: none;
+}
+#header.homepage h1 {
+  font-size: 36px;
+}
+#header.homepage h1 a {
+  padding: 20px 0;
+}
+#header.homepage ul.nav {
+  padding-top: 15px;
 }
 #footer {
   background: #e0e0e0;
@@ -147,6 +157,10 @@ h6 {
   font-family: 'Roboto Slab', serif;
   font-weight: 400;
   font-size: 1.5em;
+}
+.contentBox {
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 .footer2 {
   background: #0AB0C9;
