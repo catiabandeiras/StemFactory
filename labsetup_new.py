@@ -102,6 +102,18 @@ def labsetup(env,gui,int_db):
 
             break
 
+        elif env.now == gui.MAX_SIM_TIME:
+
+            finish_simulation(env,lab,gui,donor,donor_index,'maxtime')
+
+            dose_lot_print(env,lab,gui)
+
+            #Print the costs
+
+            final_cost_info(env,lab,gui,int_db)
+
+            break
+
         else:
 
             yield env.timeout(0.0001)
@@ -446,8 +458,8 @@ def donor_launch(env,lab,gui,donor,donor_index,int_db):
     # if donor.passage_no > gui.MAX_NO_PASSAGES:
     #     gui.results.append_event(env.now, "Max_Passages_reached")
 
-    if donor.cpds > gui.MAXIMUM_NUMBER_CPD:
-        gui.results.append_event(env.now, "Max_CPD_reached")
+    # if donor.cpds > gui.MAXIMUM_NUMBER_CPD:
+    #     gui.results.append_event(env.now, "Max_CPD_reached")
 
     print ("exited cycle cond 1 - donor passage {} <= max passage {}".format(donor.passage_no, gui.MAX_NO_PASSAGES))
     print ("exited cycle cond 2 - donor CPDS    {} <= MAX CPDS    {}".format(donor.cpds,       gui.MAXIMUM_NUMBER_CPD))
