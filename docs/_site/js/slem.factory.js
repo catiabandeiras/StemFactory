@@ -45,7 +45,7 @@ var Slem = (function ($) {
 
                 _totalInvestment = _totalInvestment - _incubatorValue;
 
-                $("#sim-s1-total").html(_totalInvestment + "&euro;");
+                $("#sim-total").html(_totalInvestment + "&euro;");
 
                 _incubatorCredits = _incubatorCredits + 1;
             }
@@ -64,7 +64,7 @@ var Slem = (function ($) {
 
                 _totalInvestment = _totalInvestment + _incubatorValue;
 
-                $("#sim-s1-total").html(_totalInvestment + "&euro;");
+                $("#sim-total").html(_totalInvestment + "&euro;");
 
                 _incubatorCredits = _incubatorCredits - 1;
             }
@@ -83,7 +83,7 @@ var Slem = (function ($) {
 
                 _totalInvestment = _totalInvestment - _workerValue;
 
-                $("#sim-s1-total").html(_totalInvestment + "&euro;");
+                $("#sim-total").html(_totalInvestment + "&euro;");
 
                 _workerCredits = _workerCredits + 1;
             }
@@ -102,7 +102,7 @@ var Slem = (function ($) {
 
                 _totalInvestment = _totalInvestment + _workerValue;
 
-                $("#sim-s1-total").html(_totalInvestment + "&euro;");
+                $("#sim-total").html(_totalInvestment + "&euro;");
 
                 _workerCredits = _workerCredits - 1;
             }
@@ -121,7 +121,7 @@ var Slem = (function ($) {
 
                 _totalInvestment = _totalInvestment - _cabinetValue;
 
-                $("#sim-s1-total").html(_totalInvestment + "&euro;");
+                $("#sim-total").html(_totalInvestment + "&euro;");
 
                 _cabinetCredits = _cabinetCredits + 1;
             }
@@ -140,7 +140,7 @@ var Slem = (function ($) {
 
                 _totalInvestment = _totalInvestment + _cabinetValue;
 
-                $("#sim-s1-total").html(_totalInvestment + "&euro;");
+                $("#sim-total").html(_totalInvestment + "&euro;");
 
                 _cabinetCredits = _cabinetCredits - 1;
             }
@@ -177,7 +177,7 @@ var Slem = (function ($) {
     };
 
     return {
-
+         
         // Public variables
         myPublicVar: "",
 
