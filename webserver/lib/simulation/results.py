@@ -8,6 +8,7 @@ class SimulationResults(object):
 
     def __init__(self):
         self.donors = []
+        self.events = []
         self.costStructure = SimulationCostStructure()
         self.events = []
         self.balance = 0

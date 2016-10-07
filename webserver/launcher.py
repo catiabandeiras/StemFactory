@@ -108,7 +108,7 @@ class Home(object):
         env = simpy.Environment()
         env.process(labsetup(env, simulationParams, db))
         #env.run(until=365.25) # a year
-        env.run(until=30) # a month <- make this variable
+        env.run(until=simulationParams.MAX_SIM_TIME) # a month <- make this variable
         return simulationParams.results
 
 

@@ -20,6 +20,7 @@ class BaseViewManager(object):
     def load_templates(self):
         self.pages = {
             'homepage':             get_web_template('homepage'),
+
             'not-implemented-yet':  get_web_template('not-implemented-yet'),
             'message':              get_web_template('message'),
 
