@@ -1,0 +1,11 @@
+#sim-welcome-msg, #sim-welcome-desc, #sim-welcome-start-btn-ctn, #sim-step1-ctn {
+    display: block;
+}
+
+#sim-welcome-ctn {
+    height: 450px;
+}
+
+#sim-welcome-start-btn-ctn {
+    margin-top: 50px;
+}
