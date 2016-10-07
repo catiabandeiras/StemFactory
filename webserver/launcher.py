@@ -41,12 +41,7 @@ class Home(object):
 
     @cherrypy.expose
     def index(self):
-        data = {
-            'scenarios': {
-                'level1': {'title' : 'Level 1' },
-                'level2': {'title' : 'Level 2' }
-            }
-        }
+        data = {}
         return self.viewManager.render_homepage(data)
 
 
@@ -59,17 +54,44 @@ class Home(object):
 
 
     @cherrypy.expose
+    def scenarios(self, **kwargs):
+        """scenarios / levels - there are vars that will be carried over from one level to the other."""
+
+        level = kwargs.get('level') or 1
+        print ("loading level", level)
+        data = get_level_config('level_{:0>3}'.format(level))
+
+        return self.viewManager.render_level(level, data)
+
+
+    @cherrypy.expose
     def simulation_submit(self, **kwargs):
-        print ("kwargs", kwargs)
+#        print ("kwargs", kwargs)
         self.simulationParams = SimulationParams()
         self.simulationParams.update(kwargs)
-        print (self.simulationParams)
+#        print (self.simulationParams)
         self.simulationResult = self.__run_simulation(self.simulationParams)
 
-        print ("Params Text", self.simulationParams.text.val)
+#        print ("Params Text", self.simulationParams.text.val)
 
-        print ("Sim Result", self.simulationResult)
-        return self.viewManager.render_simulation_result(self.simulationResult)
+#        print ("Sim Result", self.simulationResult)
+
+        try:
+            old_balance = int(kwargs.get('balance'))
+        except:
+            old_balance = 0 #initial balance
+        new_balance = old_balance + self.simulationParams.NET_PROFIT
+        self.simulationResult.balance = balance
+
+        if balance < 0: return self.viewManager.render_bankrupt(self.simulationResult)
+
+        self.simulationResult.next_level = int(kwargs.get('level')) + 1
+        data = {'params': self.simulationParams, 'results': self.simulationResult}
+        if self.simulationParams.NET_PROFIT <= 0:
+            self.viewManager.render_loss(data)
+        #elif major profit(2 stars, 3 stars a la angry birds based on a fixed value per level?)
+        else: # profit
+            return self.viewManager.render_profit(data)
 
 
     def __run_simulation(self, simulationParams):
@@ -81,7 +103,8 @@ class Home(object):
         env = simpy.Environment()
         env.process(labsetup(env, simulationParams, db))
         #env.run(until=365.25) # a year
-        env.run(until=35) # a fortnight
+        env.run(until=30) # a month <- make this variable
+        return simulationParams.results
 
 
     def __NIY(self): return self.viewManager.NIY()

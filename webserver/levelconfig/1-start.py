@@ -3,8 +3,9 @@
 # import configuration of assets
 #from levelconfig.common import cells.cellA, cells.cellB
 
+# base input fields
 config = {
-   'panels': [
+    'panels': [
         {
             'id': 'factory',
             'label': 'Factory',
@@ -164,10 +165,14 @@ config = {
 
 
 config['level'] = {
+    'number': 1,
     'title': 'This is a title',
     'description': "Let's cure your first pacient",
     'instructions': 'choose between cells A and B and try to obatin a profit',
+}
 
+#interactions permitted in level
+config['interactions'] = {
     'shopping': ['cellA', 'cellB']
 }
 
