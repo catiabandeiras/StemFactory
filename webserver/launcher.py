@@ -69,6 +69,7 @@ class Home(object):
             CommonLevelConfig.set_param(levelConfig, 'factory', assetId, cherrypy.session[assetId])
 
         cherrypy.session['level'] = level
+        levelConfig['balance'] = cherrypy.session['balance']
         return self.viewManager.render_level(levelConfig)
 
 

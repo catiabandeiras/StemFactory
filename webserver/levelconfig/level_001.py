@@ -167,9 +167,13 @@ config = {
 
 config['level'] = {
     'number': 1,
-    'title': 'This is a title',
-    'description': "Let's cure your first pacient",
-    'instructions': 'choose between cells A and B and try to obatin a profit',
+    'title': 'Welcome to your first lab!',
+    'description': "You have a very small laboratory to start producing your stem cell therapies!",
+    'instructions': '''
+        <p>Get the place up and running by hiring specialized workers and buying incubators and safety cabinets in order to process stem cell donors.</p>
+        <p>From each donor you will get one million cells. You have been requested to cure 10 people and for each cure you will need 75 million cells.</p>
+        <p>The set price for each therapy is &euro;20000. Make sure you manage to get a reputation score above 50 and a net profit from sales of at least &euro;10000.</p>
+    ''',
 }
 
 #interactions permitted in level
@@ -177,8 +181,8 @@ config['interactions'] = [
     {
         'order': 1,
         'itemTypes': 'assets',
-        'title': 'Market',
-        'description': 'Buy more equipment, contract workers',
+        'title': 'Lab Setup',
+        'description': 'Buy more equipment and contract workers for the factory',
         'items': [market[0], market[1], market[2]],
     },
     {

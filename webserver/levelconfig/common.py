@@ -34,6 +34,7 @@ cocktails = [
 
 market = [
     {
+        'id': 'incubator',
         'name': 'Incubator',
         'tooltip': '',
         'img': 'incubator.png',
@@ -41,6 +42,7 @@ market = [
         'price': 15000
     },
     {
+        'id': 'worker',
         'name': 'Worker',
         'tooltip': 'operates the equipment',
         'img': 'operator.png',
@@ -49,6 +51,7 @@ market = [
         'priceDescription': '50€/day'
     },
     {
+        'id': 'cabinet',
         'name': 'Safety Cabinet',
         'tooltip': '',
         'img': 'cabinet.png',
