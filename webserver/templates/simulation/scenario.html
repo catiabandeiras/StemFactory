@@ -3,8 +3,14 @@
 {{> page_start}}
 {{/ajax}}
 
-<form action="simulation_submit" method="POST">
+{{#level}}
+    <p class="levelNumber">{{number}}</p>
+    <p class="title">{{title}}</p>
+    <p class="description">{{description}}</p>
+    <div class="instruction">{{instructions}}</div>
+{{/level}}
 
+<form action="simulation_submit" method="POST">
 
 {{#panels}}
 {{> panel_content}}
