@@ -84,7 +84,7 @@ def labsetup(env,gui,int_db):
 
                 continue
 
-        if lab.total_doses == gui.ANNUAL_DEMAND:
+        if lab.total_doses >= gui.ANNUAL_DEMAND:
 
             #Prints how many doses and lots produced
 
@@ -96,6 +96,11 @@ def labsetup(env,gui,int_db):
 
             final_cost_info(env,lab,gui,int_db)
 
+            break
+
+        else:
+            print('Did not meet the demand in the allotted time!')
+            final_cost_info(env,lab,gui,int_db)
             break
 
     # while True:
@@ -138,6 +143,8 @@ def dose_lot_print(env,lab,gui):
     print('The total lots produced within the run at %.5f days are %d' % (env.now,lab.total_lots))
 
     gui.text.insert('2.0','The total lots produced within the run at %.5f days are %d \n' % (env.now,lab.total_lots))
+
+
 
 def finish_simulation(env,lab,gui,donor,donor_index,clause):
 
