@@ -163,7 +163,7 @@ class Home(object):
 
     def __initializeSession(self):
         cherrypy.session['balance'] = CommonLevelConfig.startingBalance
-        cherrypy.session['AREA_FACILITY'] = 400
+        cherrypy.session['AREA_FACILITY'] = 100
         cherrypy.session['TOTAL_WORKERS'] = 0
         cherrypy.session['TOTAL_BSC'] = 0
         cherrypy.session['TOTAL_INCUBATORS'] = 0
