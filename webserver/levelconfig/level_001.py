@@ -43,7 +43,7 @@ config = {
                     'id': 'TOTAL_INCUBATORS',# carry
                     'label': 'Number of incubators',
                     'hidden': True,
-                    'value': 1
+                    'value': 2
 
                 },
                 {
@@ -172,8 +172,8 @@ config['level'] = {
     'description': "You have a very small laboratory to start producing your stem cell therapies!",
     'instructions': '''
         <p>Get the place up and running by hiring specialized workers and buying incubators and safety cabinets in order to process stem cell donors.</p>
-        <p>From each donor you will get one million cells. You have been requested to cure 10 people and for each cure you will need 75 million cells.</p>
-        <p>The set price for each therapy is &euro;20000. Make sure you manage to get a reputation score above 50 and a net profit from sales of at least &euro;10000.</p>
+        <p>From each donor you will get 1 million cells. You have been requested to cure 5 people and for each cure you will need 75 million cells.</p>
+        <p>The set price for each therapy is &euro;25000. Make sure you manage to produce the doses within 60 days and to get a net profit from sales of at least &euro;10000.</p>
     ''',
 }
 
@@ -197,7 +197,7 @@ config['interactions'] = [
 
 
 config['successBonus'] = {
-    'balance': 50000
+    'balance': 1000
 }
 
 config['demandNotMetPenalty'] = {

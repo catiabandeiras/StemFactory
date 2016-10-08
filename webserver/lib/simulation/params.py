@@ -69,7 +69,7 @@ class SimulationParams(object):
         self.CELL_NUMBER_PER_DOSE = 75e6 # in millions
         self.ANNUAL_DEMAND = 1 # doses / year
         self.LOT_SIZE = 1 #doses / lot
-        self.MAX_SIM_TIME = 10 #Number of days to reach the end goal
+        self.MAX_SIM_TIME = 60 #Number of days to reach the end goal
 
         self.types = {
             'AREA_FACILITY': float,

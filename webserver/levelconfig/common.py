@@ -51,7 +51,7 @@ market = [
     {
         'id': 'incubator',
         'name': 'Incubator',
-        'tooltip': 'Incubator tooltip',
+        'tooltip': 'Equipment where the cells will grow.',
         'img': 'incubator.png',
         'fieldId': 'TOTAL_INCUBATORS',
         'price': 15000
@@ -59,7 +59,7 @@ market = [
     {
         'id': 'worker',
         'name': 'Worker',
-        'tooltip': 'operates the equipment',
+        'tooltip': 'A qualified worker to manipulate the cells under Good Manufacturing Practices.',
         'img': 'operator.png',
         'fieldId': 'TOTAL_WORKERS',
         'price': 1000,
@@ -68,7 +68,7 @@ market = [
     {
         'id': 'cabinet',
         'name': 'Safety Cabinet',
-        'tooltip': 'Safety Cabinet tooltip',
+        'tooltip': 'The equipment where cells will be manipulated.',
         'img': 'cabinet.png',
         'fieldId': 'TOTAL_BSC',
         'price': 12000
