@@ -98,18 +98,6 @@ def labsetup(env,gui,int_db):
 
             break
 
-        elif round(env.now,1) == float(gui.MAX_SIM_TIME):
-
-            print('Time is over!')
-
-            dose_lot_print(env,lab,gui)
-
-            #Print the costs
-
-            final_cost_info(env,lab,gui,int_db)
-
-            break
-
     # while True:
 
     #     if lab.finished_donors >= donor_index:
