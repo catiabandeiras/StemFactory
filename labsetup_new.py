@@ -96,6 +96,13 @@ def labsetup(env,gui,int_db):
 
             final_cost_info(env,lab,gui,int_db)
 
+            #Calculates the number of days before deadline
+
+            gui.results.days_bf_deadline = gui.MAX_SIM_TIME - int(env.now)
+
+            print('Met the demand in %d days!' %int(env.now))
+            print('Met the demand %d days before the deadline!' %int(gui.results.days_bf_deadline))
+
             break
 
         #else:

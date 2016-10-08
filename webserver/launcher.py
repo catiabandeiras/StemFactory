@@ -127,7 +127,7 @@ class Home(object):
 
         #elif major profit(2 stars, 3 stars a la angry birds based on a fixed value per level?)
         else: # profit
-            data['successBonus'] = levelConfig['successBonus']['balance']
+            data['successBonus'] = levelConfig['successBonus']['balance'] * self.simulationResult.days_bf_deadline
             cherrypy.session['balance']+= data['successBonus']
             return self.viewManager.render_profit(data)
 
