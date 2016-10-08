@@ -6,6 +6,7 @@ cocktails = [
     {
         'id': 'cocktail_a',
         'name': 'Cocktail A',
+        'code_name': 'fbs',
         'img': 'bottle-green.png',
         'pricePerLitre': 150, #Eur / L
         'growth': 0.2, # 20% per day
@@ -16,6 +17,7 @@ cocktails = [
     {
         'id': 'cocktail_b',
         'name': 'Cocktail B',
+        'code_name': 'hpl',
         'img': 'bottle-pink.png',
         'pricePerLitre': 210, #Eur / L
         'growth': 0.25, # 25% per day
@@ -26,6 +28,7 @@ cocktails = [
     {
         'id': 'cocktail_c',
         'name': 'Cocktail C',
+        'code_name':'stempro',
         'img': 'bottle-pink.png',
         'pricePerLitre': 100, #Eur / L
         'growth': 0.15, # 25% per day

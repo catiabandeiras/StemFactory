@@ -15,7 +15,7 @@ config = {
                     'id': 'AREA_FACILITY', # carry
                     'label': 'Total GMP Facility Area',
                     'hidden': True,
-                    'value': 400
+                    'value': 100
                 },
                 {
                     'id': 'AREA_UNIT',
@@ -151,13 +151,13 @@ config = {
                     'id': 'ANNUAL_DEMAND',
                     'label': 'Number of doses per year',
                     'hidden': True,
-                    'value': 1
+                    'value': 5
                 },
                 {
                     'id': 'LOT_SIZE',
                     'label': 'Number of doses per lot',
                     'hidden': True,
-                    'value': 1
+                    'value': 5
                 }
             ]
         },
