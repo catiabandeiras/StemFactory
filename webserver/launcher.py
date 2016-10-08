@@ -19,7 +19,7 @@ from lib.simulation.params import SimulationParams
 
 from levelconfig import common as CommonLevelConfig
 
-
+from final_cost_info import final_cost_info
 #Increase the recursion limit to avoid the limits of recursion with scipy #copied
 sys.setrecursionlimit(5000)
 
@@ -151,6 +151,13 @@ class Home(object):
         #env.run(until=365.25) # a year
         env.run(until=simulationParams.MAX_SIM_TIME) # a month <- make this variable
 #        env.run(until=60) # a month <- make this variable
+
+        #may recall this function again if already called before
+        #print("ACAC - ", env.now, len(simulationParams.results.donors))
+        #print("results", simulationParams.results)
+        #if len(simulationParams.results.donors) == 0:
+        if simulationParams.results.costStructure.costPerDose == 0:
+            final_cost_info(env, simulationParams.lab, simulationParams, db)
 
         return simulationParams.results
 

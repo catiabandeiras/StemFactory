@@ -3,16 +3,19 @@
 {{> page_start}}
 {{/ajax}}
 
+<div class="resultsBoard">
+    <h2>Simulation Results</h2>
+    <p class="result-summary">You lost some money in this contract.</p>
+    <p class="result-summary">But not all is lost!</p>
 
-<h3>You lost some money in this contract.</h3>
-<p>But not all is lost!</p>
+    {{> results_summary}}
 
-{{> results_summary}}
-
-<a href="retry">Retry</a>
-<a href="scenarios">Restart</a>
-<a href="scenarios?level={{nextlevel}}">Next Level</a>
-
+    <p class="buttons clearfix">
+        <a href="retry">Retry</a>
+        <a href="scenarios">Restart</a>
+        <a href="scenarios?level={{nextlevel}}">Next Level</a>
+    </p>
+</div>
 
 {{^ajax}}
 {{> page_end}}

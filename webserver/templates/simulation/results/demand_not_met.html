@@ -3,21 +3,29 @@
 {{> page_start}}
 {{/ajax}}
 
+<div class="resultsBoard">
+    <h2>Simulation Results</h2>
+    <p class="result-summary">Oh no! You did not meet this contract's demand in time.</p>
+    <p class="result-summary">You can retry the level to meet the demand.</p>
 
-<h3>Oh no! You did not meet this contract's demand in time.</h3>
-<p>You can retry the level to meet the demand.</p>
-
-{{> results_summary}}
-
-<p>You failed to meet the demand of {{params.ANNUAL_DEMAND}} by {{missingDemandDoses}} doses.</p>
-<p>You will receive a penalty of {{demandNotMetPenalty}}€ .</p>
+    {{> results_summary}}
 
 
-<a href="retry">Retry</a>
-<a href="scenarios">Restart</a>
-<a href="scenarios?level={{nextlevel}}">Next Level</a>
+    <!--p>You failed to meet the demand of {{params.ANNUAL_DEMAND}} by {{missingDemandDoses}} doses.</p>
+    <p>You will receive a penalty of {{demandNotMetPenalty}}€ .</p-->
 
-</form>
+    <div class="balance-container">
+        <p class="balance-label">Penalty for not meeting demand on time</p>
+        <p class="balance-value">{{demandNotMetPenalty}}</p>
+    </div>
+
+    <p class="buttons clearfix">
+        <a href="retry">Retry</a>
+        <a href="scenarios">Restart</a>
+        <a href="scenarios?level={{nextlevel}}">Next Level</a>
+    </p>
+
+</div>
 
 {{^ajax}}
 {{> page_end}}

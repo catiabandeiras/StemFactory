@@ -16,7 +16,9 @@ class SimulationResults(object):
         self.events = []
         self.doses_manufactured = 0
         self.balance = 0
+        self.days_to_meet_demand = 0
         self.days_bf_deadline = 0
+        self.deadline_met = False
 
 
     def add_donor_results(self, spentDays, totalDoses, totalLots):

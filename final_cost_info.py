@@ -58,6 +58,7 @@ def final_cost_info(env,lab,gui,int_db):
 
     print(np.round(array_final_costs,2))
 
+    print("final_total_costs / lab.total_doses", final_total_costs, lab.total_doses)
     final_costs_per_dose = final_total_costs / lab.total_doses
 
     print('The total costs per dose are %.2f EUR.' % final_costs_per_dose)

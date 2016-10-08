@@ -3,13 +3,17 @@
 {{> page_start}}
 {{/ajax}}
 
-<h3>You went Bankrupt!</h3>
+<div class="resultsBoard">
+    <h2>Simulation Results</h2>
+    <p class="result-summary">You went Bankrupt!</p>
 
-{{> results_summary}}
+    {{> results_summary}}
 
-<a href="retry">Retry</a>
-<a href="scenarios">Restart</a>
-
+    <p class="buttons clearfix">
+        <a href="retry">Retry</a>
+        <a href="scenarios">Restart</a>
+    </p>
+</div>
 
 {{^ajax}}
 {{> page_end}}
