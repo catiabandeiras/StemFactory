@@ -1,0 +1,24 @@
+
+{{^ajax}}
+{{> page_start}}
+{{/ajax}}
+
+
+<h3>Oh no! You did not meet this contract's demand in time.</h3>
+<p>You can retry the level to meet the demand.</p>
+
+{{> results_summary}}
+
+<p>You failed to meet the demand of {{params.ANNUAL_DEMAND}} by {{missingDemandDoses}} doses.</p>
+<p>You will receive a penalty of {{demandNotMetPenalty}}€ .</p>
+
+
+<a href="retry">Retry</a>
+<a href="scenarios">Restart</a>
+<a href="scenarios?level={{nextlevel}}">Next Level</a>
+
+</form>
+
+{{^ajax}}
+{{> page_end}}
+{{/ajax}}

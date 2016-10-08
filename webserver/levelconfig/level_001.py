@@ -200,4 +200,6 @@ config['successBonus'] = {
     'balance': 50000
 }
 
-
+config['demandNotMetPenalty'] = {
+    'balance': -5000 # per dose
+}

@@ -30,6 +30,7 @@ class BaseViewManager(object):
             'bankrupt':             get_web_template('simulation/results/bankrupt'),
             'loss':                 get_web_template('simulation/results/loss'),
             'profit':               get_web_template('simulation/results/profit'),
+            'demand_not_met':       get_web_template('simulation/results/demand_not_met'),
 
             'level':                get_web_template('simulation/scenario'),
         }
@@ -84,6 +85,10 @@ class BaseViewManager(object):
 
     def render_loss(self, data):
         return self.renderer.render(self.pages.get('loss'), data, self.partials)
+
+
+    def render_demand_not_met(self, data):
+        return self.renderer.render(self.pages.get('demand_not_met'), data, self.partials)
 
 
     def render_bankrupt(self, data):

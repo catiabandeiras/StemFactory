@@ -100,22 +100,33 @@ class Home(object):
 
         print ("balance", old_balance, new_balance)
 
+
         if new_balance < 0: return self.viewManager.render_bankrupt({"results": self.simulationResult})
 
         #self.simulationResult.next_level = int(kwargs.get('level')) + 1
 
         currentLevel = cherrypy.session['level']
         data = {
-            #'params': self.simulationParams,
+            'params': self.simulationParams,
             'results': self.simulationResult,
             'nextlevel': currentLevel + 1
         }
 
+        levelConfig = get_level_config('level_{:0>3}'.format(currentLevel))
+
+        if self.simulationResult.doses_manufactured < self.simulationParams.ANNUAL_DEMAND:
+            offset = self.simulationParams.ANNUAL_DEMAND - self.simulationResult.doses_manufactured
+            data['missingDemandDoses'] = offset
+            data['demandNotMetPenalty'] = levelConfig['demandNotMetPenalty']['balance'] * offset
+            cherrypy.session['balance']+= data['demandNotMetPenalty']
+            return self.viewManager.render_demand_not_met(data)
+
+
         if self.simulationParams.NET_PROFIT <= 0:
             return self.viewManager.render_loss(data)
+
         #elif major profit(2 stars, 3 stars a la angry birds based on a fixed value per level?)
         else: # profit
-            levelConfig = get_level_config('level_{:0>3}'.format(currentLevel))
             data['successBonus'] = levelConfig['successBonus']['balance']
             cherrypy.session['balance']+= data['successBonus']
             return self.viewManager.render_profit(data)

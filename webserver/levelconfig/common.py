@@ -12,7 +12,7 @@ cocktails = [
         'growth': 0.2, # 20% per day
         'growthParameters': "[0.21, 0.20, 0.18]", #json
         'fieldId': 'GR_P',
-        'type_et': 'microcarrier'
+        'type_et': 'planar'
     },
     {
         'id': 'cocktail_b',
@@ -23,7 +23,7 @@ cocktails = [
         'growth': 0.25, # 25% per day
         'growthParameters': "[0.27, 0.25, 0.20]", #json
         'fieldId': 'GR_P',
-        'type_et': 'microcarrier'
+        'type_et': 'planar'
     },
     {
         'id': 'cocktail_c',
@@ -34,7 +34,7 @@ cocktails = [
         'growth': 0.15, # 25% per day
         'growthParameters': "[0.17, 0.15, 0.12]", #json
         'fieldId': 'GR_P',
-        'type_et': 'microcarrier'
+        'type_et': 'planar'
     }
 ]
 

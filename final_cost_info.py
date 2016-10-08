@@ -65,7 +65,9 @@ def final_cost_info(env,lab,gui,int_db):
     print(final_costs_per_dose)
     print(gui.SALES_PRICE)
 
-    gui.NET_PROFIT += (gui.SALES_PRICE - final_costs_per_dose)*gui.ANNUAL_DEMAND
+    gui.NET_PROFIT += (gui.SALES_PRICE - final_costs_per_dose)*max(gui.ANNUAL_DEMAND, lab.total_doses)
+
+    gui.results.doses_manufactured = lab.total_doses
 
     print(gui.NET_PROFIT)
 
@@ -74,12 +76,12 @@ def final_cost_info(env,lab,gui,int_db):
     if gui.NET_PROFIT > 0:
 
         gui.text.insert('10.0','Congrats! You have now a profit of %.2f EUR! \n' %gui.NET_PROFIT)
-        gui.results.append_event(env.now, 'loss')
+        gui.results.append_event(env.now, 'profit')
 
     else:
 
-        gui.text.insert('10.0','Tragedy! You are broke!\n')
-        gui.results.append_event(env.now, 'profit')
+        gui.text.insert('10.0','Tragedy! You lost money!\n')
+        gui.results.append_event(env.now, 'loss')
 
     # AC MOD - track costs
     gui.results.set_costs(
