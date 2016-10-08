@@ -40,6 +40,14 @@ img {
   color: #6e6e6e;
   font-size: 0.9em;
 }
+.btn-primary {
+  background-color: #0AB0C9;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #088598;
+}
 /* 
 TERESA ALVES | trezalves.com/Jekyll
 */
@@ -52,14 +60,66 @@ html {
 html body {
   margin: 0;
   padding: 0;
+  padding-bottom: 50px;
+}
+html body .loaderBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+html body .loaderBox .loader {
+  text-indent: -9999em;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.05);
+  border-left-color: rgba(0, 0, 0, 0.25);
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: spin 1s infinite linear;
+  animation: spin 1s infinite linear;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+  border-width: 16px;
+  width: 180px;
+  height: 180px;
+  top: 50%;
+  margin-top: -90px;
+  left: 50%;
+  margin-left: -90px;
+}
+html body .loaderBox .loader:after {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 a {
-  color: #be1c1c;
+  color: #0AB0C9;
 }
 a:hover,
 a:focus,
 a:active {
-  color: #650f0f;
+  color: #055b68;
 }
 h1,
 h2,
@@ -70,11 +130,68 @@ h6 {
   font-family: 'Roboto Slab', serif;
   font-weight: 400;
 }
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
+}
 /* Block Background Colors */
 #header {
-  background: #e0e0e0;
+  background: #0AB0C9;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 2em 0;
+}
+#header h1 {
+  margin: 0;
+}
+#header h1 a {
+  color: #f9f9f9;
+  padding: 10px 0;
+  display: block;
+}
+#header h1 a:hover,
+#header h1 a:focus {
+  opacity: 0.7;
+}
+#header .site-description {
+  color: #f9f9f9;
+}
+#header ul.nav {
+  text-align: right;
+}
+#header ul.nav li {
+  display: inline-block;
+}
+#header ul.nav li a {
+  font-size: 1.5em;
+  color: #f9f9f9;
+  border-bottom: 2px solid transparent;
+}
+#header ul.nav li a:hover,
+#header ul.nav li a:focus {
+  background: rgba(0, 0, 0, 0.1);
+}
+#header ul.nav li a.active {
+  border-bottom: 2px solid #f9f9f9;
+}
+#header:not(.homepage) h1 {
+  font-size: 26px;
+}
+#header:not(.homepage) h1 a {
+  padding: 10px 0;
+}
+#header:not(.homepage) .site-description {
+  display: none;
+}
+#header.homepage h1 {
+  font-size: 36px;
+}
+#header.homepage h1 a {
+  padding: 20px 0;
+}
+#header.homepage ul.nav {
+  padding-top: 15px;
 }
 #footer {
   background: #e0e0e0;
@@ -99,4 +216,52 @@ h6 {
   font-family: 'Roboto Slab', serif;
   font-weight: 400;
   font-size: 1.5em;
+}
+.contentBox {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+.container .jumbotron {
+  padding: 0 !important;
+  background: transparent;
+}
+.container p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  max-width: 750px;
+  margin: 0 auto;
+}
+.container .cellBlock .innerCell {
+  margin: 1em;
+}
+.container img.img-responsive {
+  max-width: 70%;
+  display: block;
+  margin: 0 auto;
+}
+.container img.img-responsive.img-responsive2 {
+  max-width: 35%;
+}
+.container .inline-block {
+  display: block;
+}
+.container .inline-block.left {
+  float: left;
+}
+.container .inline-block.right {
+  float: right;
+}
+.footer2 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #0AB0C9;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.footer2 .copyright {
+  text-align: center;
+  padding: 1em 0;
+  color: #f9f9f9;
 }
