@@ -78,6 +78,13 @@ class BaseViewManager(object):
         return self.renderer.render(self.pages.get('simulation.result'), data, self.partials)
 
 
+    def render_profit(self, data):
+        return self.renderer.render(self.pages.get('profit'), data, self.partials)
+
+    def render_loss(self, data):
+        return self.renderer.render(self.pages.get('loss'), data, self.partials)
+
+
     def render_level(self, levelNo, data):
         #return self.renderer.render(self.pages.get('level.{}'.format(levelNo)), data, self.partials)
         return self.renderer.render(self.pages.get('level'), data, self.partials)

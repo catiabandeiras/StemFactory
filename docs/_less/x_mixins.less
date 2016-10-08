@@ -301,3 +301,49 @@
 	    margin-bottom: 2em;
 	}
 }
+
+// LOADER
+/////////////////////////////////////////////////////////////////////////
+.sf-loader() {
+	text-indent:-9999em;
+
+	border-style: 		solid;
+	border-color:		rgba(0,0,0, 0.05);
+	border-left-color:	rgba(0,0,0, 0.25);
+
+	-webkit-transform: translateZ(0);
+		-ms-transform: translateZ(0);
+			transform: translateZ(0);
+
+	-webkit-animation: spin 1s infinite linear;
+			animation: spin 1s infinite linear;
+
+	.round-border();
+	&:after { .round-border(); }
+
+	@-webkit-keyframes spin {
+		0% {
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+		100% {
+			-webkit-transform: rotate(360deg);
+			transform: rotate(360deg);
+		}
+	}
+	@keyframes spin {
+		0% {
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+		100% {
+			-webkit-transform: rotate(360deg);
+			transform: rotate(360deg);
+		}
+	}
+
+	border-width:16px;
+	width:180px; height:180px;
+	top:50%; margin-top:-90px;
+    left:50%; margin-left:-90px;
+}
