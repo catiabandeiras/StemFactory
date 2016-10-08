@@ -94,12 +94,236 @@
 
 	<div id="sim-welcome-ctn" class="jumbotron">
 	    <h2 id="sim-welcome-msg">Welcome to your first lab!</h2>
-	    <p id="sim-welcome-desc">You have a very small laboratory to start producing your stem cell therapies!</p>
+	    <p id="sim-welcome-desc">You have a very small laboratory to start producing your stem cell therapies! Get the place up and running by hiring specialized workers and buying incubators and safety cabinets in order to process stem cell donors. From each donor you will get one million cells. You have been requested to cure 10 people and for each cure you will need 75 million cells. The set price for each therapy is &euro;20000. Make sure you manage to get a reputation score above 50 and a net profit from sales of at least &euro;10000.</p>
+	    <p id="sim-welcome-start-btn-ctn"><a id="sim-welcome-start-btn" class="btn btn-primary btn-lg" href="#" role="button">Start Simulation</a></p>
+	</div>
 
-	    <p>Get the place up and running by hiring specialized workers and buying incubators and safety cabinets in order to process stem cell donors. From each donor you will get one million cells. You have been requested to cure 10 people and for each cure you will need 75 million cells. The set price for each therapy is &euro;20000. Make sure you manage to get a reputation score above 50 and a net profit from sales of at least &euro;10000.</p>
-	    <p id="sim-welcome-start-btn-ctn">
-	    	<a id="sim-welcome-start-btn" class="btn btn-primary btn-lg" href="/lab-setup/index.html" role="button">Start Simulation</a>
-	    </p>
+	<div id="sim-step1-ctn">
+
+	    <div class="row remaining">
+	       <h2>Lab Setup</h2>
+	       <div class="label">Remaining</div>
+	       <div class="panel-body">
+				<span id="sim-total">50000&euro;</span>
+			</div>
+	    </div>
+
+	    <div class="row">
+	        <div class="cellBlock col-md-4">
+	        	<div class="innerCell">
+	        		<div class="row imgRow">
+	        		     <img class="img-responsive" src="/imgs/content/incubator.png" />
+	        		</div>
+
+	        		<div class="row">
+	        		    <div class="panel panel-primary">
+	        		        <div class="panel-heading">
+
+	        		            <div class="row">
+	        		                <div class="col-md-7">
+	        		                    <h4>Incubator <span id="sim-s1-incubator-credits" class="badge">0</span></h4>
+	        		                </div>
+	        		                <div class="col-md-5">
+	        		                    <h3 class="panel-title">
+	        		                        <a id="sim-s1-incubator-credit-sub" href="#" class="btn btn-warning check-next-step">
+	        		                            <strong>- 1</strong>
+	        		                        </a>
+	        		                        <a id="sim-s1-incubator-credit-add" href="#" class="btn btn-success check-next-step">
+	        		                            <strong>+ 1</strong>
+	        		                        </a>
+	        		                    </h3>
+	        		                </div>
+	        		            </div>
+	        		        </div>
+	        		        <div class="panel-body">
+	        		            <h4>15000&euro; per unit</h4>
+	        		        </div>
+	        		    </div>
+	        		</div>
+	        	</div>
+	        </div>
+
+	        <div class="cellBlock col-md-4">
+	        	<div class="innerCell">
+        			<div class="row imgRow">
+        		         <img class="img-responsive" src="/imgs/content/operator.png" />
+        		    </div>
+
+        		    <div class="row">
+        		        <div class="panel panel-primary">
+        		            <div class="panel-heading">
+
+        		                <div class="row">
+        		                    <div class="col-md-7">
+        		                        <h4>Worker <span id="sim-s1-worker-credits" class="badge">0</span></h4>
+        		                    </div>
+        		                    <div class="col-md-5">
+        		                        <h3 class="panel-title">
+        		                            <a id="sim-s1-worker-credit-sub" href="#" class="btn btn-warning check-next-step">
+        		                                <strong>- 1</strong>
+        		                            </a>
+        		                            <a id="sim-s1-worker-credit-add" href="#" class="btn btn-success check-next-step">
+        		                                <strong>+ 1</strong>
+        		                            </a>
+        		                        </h3>
+        		                    </div>
+        		                </div>
+        		            </div>
+        		            <div class="panel-body">
+        		                <h4>50&euro; per day</h4>
+        		            </div>
+        		        </div>
+        		    </div>
+	        	</div>
+	        </div>
+
+	        <div class="cellBlock col-md-4">
+	        	<div class="innerCell">
+        			<div class="row imgRow">
+        		         <img class="img-responsive" src="/imgs/content/cabinet.png" />
+        		    </div>
+
+        		    <div class="row">
+        		        <div class="panel panel-primary">
+        		            <div class="panel-heading">
+        		                <div class="row">
+        		                    <div class="col-md-7">
+        		                        <h4>Safety Cabinet <span id="sim-s1-cabinet-credits" class="badge">0</span></h4>
+        		                    </div>
+        		                    <div class="col-md-5">
+        		                        <h3 class="panel-title">
+        		                            <a id="sim-s1-cabinet-credit-sub" href="#" class="btn btn-warning check-next-step">
+        		                                <strong>- 1</strong>
+        		                            </a>
+        		                            <a id="sim-s1-cabinet-credit-add" href="#" class="btn btn-success check-next-step">
+        		                                <strong>+ 1</strong>
+        		                            </a>
+        		                        </h3>
+        		                    </div>
+        		                </div>
+        		            </div>
+        		            <div class="panel-body">
+        		                <h4>12000&euro; per unit</h4>
+        		            </div>
+        		        </div>
+        		    </div>
+	        	</div>
+	        </div>
+
+	        <!-- <div class="cellBlock col-md-3">
+	        	<div class="innerCell">
+        			<div class="row imgRow">
+        		         <img class="img-responsive budget" src="/imgs/content/budget.png" />
+        		    </div>
+
+        		    <div class="row">
+        		        <div class="panel panel-success">
+        		            <div class="panel-heading">
+        		                <h4>Total Investment</h4>
+        		            </div>
+        		            <div class="panel-body">
+        		                <h4 id="sim-total">50000&euro;</h4>
+        		            </div> 
+        		        </div>
+        		    </div>
+	        	</div>
+	        </div> -->
+	    </div>
+
+	    <div class="row">
+	        <div class="col-md-12 text-center">
+	            <a id="sim-s1-next-btn" href="#" class="btn btn-default btn-lg">Next Step</a>
+	        </div>
+	    </div>
+	</div>
+
+	<div id="sim-step2-ctn">
+		<h2>Choose your cell "food"</h2>
+
+		<div class="row">
+			<div class="cellBlock col-md-3 col-md-offset-2">
+	        	<div class="innerCell">
+        			<div class="row imgRow">
+        		        <img class="img-responsive img-responsive2" src="/imgs/content/bottle-green.png" />
+        		    </div>
+        		    <div class="row">
+        		        <div id="sim-s2-cocktailA-painel" class="panel panel-primary">
+        		            <div class="panel-heading">
+        		                <div class="row">
+        		                    <div class="inline-block left">
+        		                        <h4>Cocktail A</h4>
+        		                    </div>
+        		                    <div class="inline-block right">
+        		                        <h3 class="panel-title">
+        		                            <a id="sim-s2-cocktailA-add" href="#" class="btn btn-success check-next-step">
+        		                                <strong>Seleccionar</strong>
+        		                            </a>
+        		                        </h3>
+        		                    </div>
+        		                </div>
+        		            </div>
+        		            <div class="panel-body">
+        		                <h4>210&euro;/L | Growth 25%/day</h4>
+        		            </div>
+        		        </div>
+        		    </div>
+	        	</div>
+	        </div>
+	        <div class="cellBlock col-md-3">
+	        	<div class="innerCell">
+        			<div class="row imgRow">
+        		         <img class="img-responsive img-responsive2" src="/imgs/content/bottle-pink.png" />
+        		    </div>
+        		    <div class="row">
+        		        <div id="sim-s2-cocktailB-painel" class="panel panel-primary">
+        		            <div class="panel-heading">
+        		                <div class="row">
+        		                    <div class="inline-block left">
+        		                        <h4>Cocktail B</h4>
+        		                    </div>
+        		                    <div class="inline-block right">
+        		                        <h3 class="panel-title">
+        		                            <a id="sim-s2-cocktailB-add" href="#" class="btn btn-success check-next-step">
+        		                                <strong>Seleccionar</strong>
+        		                            </a>
+        		                        </h3>
+        		                    </div>
+        		                </div>
+        		            </div>
+        		            <div class="panel-body">
+        		                <h4>150&euro;/L | Growth 20%/day</h4>
+        		            </div>
+        		        </div>
+        		    </div>
+	        	</div>
+	        </div>
+	        <div class="cellBlock col-md-3">
+	        	<div class="innerCell">
+        			<div class="row imgRow">
+        		         <img class="img-responsive budget" src="/imgs/content/budget.png" />
+        		    </div>
+        		    <div class="row">
+        		        <div class="panel panel-success">
+        		            <div class="panel-heading">
+        		                <h4>Total Investment</h4>
+        		            </div>
+        		            <div class="panel-body">
+        		                <h4 id="sim-s2-total"></h4>
+        		            </div>
+        		        </div>
+        		    </div>
+	        	</div>
+	        </div>
+
+		</div>
+
+	    <div class="col-md-12 text-center">
+	            <a id="sim-s2-next-btn" href="#" class="btn btn-default btn-lg">Start Simulation</a>
+	        </div>
+	</div>
+	
+	<div id="sim-step3-ctn">
+	    <div class="loaderBox"><div class="loader">loading...</div></div>
 	</div>
 
 </div>
