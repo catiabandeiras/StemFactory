@@ -15,7 +15,7 @@ var Slem = (function ($) {
         return temp;
     }
 
-    var _balance =      parseFloat($('#balance').val(), 10);
+    var _balance =      parseFloat($('#balance').val(), 2);
 
     var _assetPrices = {
         'incubator':    parseFloat($('#incubator-data') .data('price'), 10),
@@ -37,7 +37,7 @@ var Slem = (function ($) {
     var _isSimS1NextButtonActive = false;
     var _isSimS2NextButtonActive = false;
 
-    var animationTime = 600
+    var animationTime = 600;
 
     // Private functions
     var _init = function () {
@@ -90,7 +90,7 @@ var Slem = (function ($) {
 
         var update_balance = function(transactionAmount){
             _balance = _balance + transactionAmount
-            $(".sim-balance").html(_balance + "&euro;");
+            $(".sim-balance").html(_balance + " &euro;");
         }
 
         var update_asset_units = function(asset, units) {
@@ -140,6 +140,9 @@ var Slem = (function ($) {
                 for (var g in growth)
                     $('#GR_P' + (parseInt(g, 10) + 1)).val(growth[g]); // g is a string - jquery thing?
             }
+
+            $('#TYPE_OF_MEDIA').val(elem.data('culture-media'));
+
             return false;
         }
 
@@ -199,6 +202,9 @@ var Slem = (function ($) {
             setTimeout(submit_simulation, 100);
             return false;
         });
+
+        // run after the declaration
+        update_balance(0);
 
     };
 

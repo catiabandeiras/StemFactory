@@ -22,14 +22,19 @@
         {{#interactions}}
         <div id="sim-step{{order}}-ctn">
 
-            <div class="row">
+            <div class="row remaining">
                 <h2>{{title}}</h2>
                 <p class="interaction-description">{{description}}</p>
+                <div class="label">Budget</div>
+                <div class="panel-body">
+                    <span id="sim-total" class="sim-balance"></span>
+                </div>
+
             </div>
 
             <div class="row">
                 {{#items}}
-                <div class="cellBlock col-md-3">
+                <div class="cellBlock col-md-4">
                     <div class="innerCell">
                         <div class="row imgRow">
                              <img class="img-responsive" src="/static/img/{{img}}" />
@@ -39,7 +44,7 @@
                         <div class="row">
                             <div class="panel panel-primary {{itemTypes}}-panel" id="{{id}}-data"
                                         data-id="{{id}}" data-price="{{price}}" data-field="{{fieldId}}"
-                                        data-growth="{{growthParameters}}">
+                                        data-growth="{{growthParameters}}" data-culture-media="{{code_name}}">
 
                                 <div class="panel-heading">
 
@@ -78,7 +83,7 @@
                     </div>
                 </div>
                 {{/items}}
-
+<!--
                 <div class="cellBlock col-md-3">
                     <div class="innerCell">
                         <div class="row imgRow">
@@ -88,15 +93,16 @@
                         <div class="row">
                             <div class="panel panel-success">
                                 <div class="panel-heading">
-                                    <h4>Total Investment</h4>
+                                    <h4>Budget</h4>
                                 </div>
                                 <div class="panel-body">
-                                    <h4 id="sim-s{{order}}-total" class="sim-balance">50000 &euro;</h4>
+                                    <h4 id="sim-s{{order}}-total" class="sim-balance"></h4>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+-->
             </div>
 
             <div class="row">

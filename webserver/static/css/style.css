@@ -48,7 +48,7 @@ img {
 .btn-primary:focus {
   background-color: #088598;
 }
-/*
+/* 
 TERESA ALVES | trezalves.com/Jekyll
 */
 html {
@@ -61,6 +61,7 @@ html body {
   margin: 0;
   padding: 0;
   padding-bottom: 50px;
+  background-color: transparent;
 }
 html body .loaderBox {
   position: fixed;
@@ -265,7 +266,3 @@ h6 {
   padding: 1em 0;
   color: #f9f9f9;
 }
-
-/*AC*/
-.asset-tooltip {display: none;}
-.consumables-label {float: left; display: block;}

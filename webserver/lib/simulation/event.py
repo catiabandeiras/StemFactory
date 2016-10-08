@@ -12,5 +12,5 @@
 class SimulationEvent(object):
 
     def __init__(self, simTime, eventName):
-        self.simTime   = simTime
+        self.simTime   = round(simTime, 3)
         self.eventName = eventName

@@ -14,6 +14,7 @@ class SimulationResults(object):
         self.events = []
         self.costStructure = SimulationCostStructure()
         self.events = []
+        self.doses_manufactured = 0
         self.balance = 0
 
 

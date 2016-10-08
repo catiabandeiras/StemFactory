@@ -25,6 +25,7 @@
     <li><span class="result-label">Quality Control</span> {{qualityControl}}</li>
     <li><span class="result-label">Total Cost</span> {{totalCost}}</li>
     <li><span class="result-label">Cost Per Dose</span> {{costPerDose}}</li>
+    <li><span class="result-label">Doses Manufactured</span> {{doses_manufactured}}</li>
 </ul>
 {{/costStructure}}
 
@@ -32,7 +33,7 @@
 <ul>
     {{#events}}
     <li class="event">
-        <p></p>
+        <p><span class="time">{{simTime}}</span> {{eventName}}</p>
     </li>
     {{/events}}
 </ul>
