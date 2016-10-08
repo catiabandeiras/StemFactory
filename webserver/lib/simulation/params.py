@@ -83,23 +83,23 @@ class SimulationParams(object):
             'TOTAL_WORKERS': int,
             'TOTAL_BSC': int,
             'TOTAL_INCUBATORS': int,
-            'TOTAL_BIOREACTORS': int,           
+            'TOTAL_BIOREACTORS': int,
 
             'INITIAL_CELLS_PER_DONOR_AVG': int, # in millions
             'INITIAL_CELLS_PER_DONOR_SD': int, # in millions
             'MAXIMUM_NUMBER_CPD': float,
             'MAX_NO_PASSAGES': int, # between 1 and 5
 
-            'LIST_OF_MAX_GROWTH_RATES': list,
+#AC            'LIST_OF_MAX_GROWTH_RATES': list,
             'GR_P1': float,
             'GR_P2': float,
             'GR_P3': float,
             'GR_P4': float,
             'GR_P5': float,
-            
-            'P1': float,
-            'P2': float,
-            'P3': float,
+
+#AC            'P1': float,
+#AC            'P2': float,
+#AC            'P3': float,
 
             'SD_PLANAR': float, #seeding density
             'SD_SUSPENSION': float, #in suspension

@@ -98,25 +98,35 @@ class Home(object):
         new_balance = old_balance + self.simulationParams.NET_PROFIT
         cherrypy.session['balance'] = new_balance
 
-        if new_balance < 0: return self.viewManager.render_bankrupt(self.simulationResult)
+        print ("balance", old_balance, new_balance)
+
+        if new_balance < 0: return self.viewManager.render_bankrupt({"results": self.simulationResult})
 
         #self.simulationResult.next_level = int(kwargs.get('level')) + 1
 
         currentLevel = cherrypy.session['level']
         data = {
-            'params': self.simulationParams,
+            #'params': self.simulationParams,
             'results': self.simulationResult,
             'nextlevel': currentLevel + 1
         }
 
         if self.simulationParams.NET_PROFIT <= 0:
-            self.viewManager.render_loss(data)
+            return self.viewManager.render_loss(data)
         #elif major profit(2 stars, 3 stars a la angry birds based on a fixed value per level?)
         else: # profit
             levelConfig = get_level_config('level_{:0>3}'.format(currentLevel))
             data['successBonus'] = levelConfig['successBonus']['balance']
             cherrypy.session['balance']+= data['successBonus']
             return self.viewManager.render_profit(data)
+
+
+    @cherrypy.expose
+    def retry(self):
+        for key in ['balance', 'TOTAL_WORKERS', 'TOTAL_BSC', 'TOTAL_INCUBATORS', 'TOTAL_BIOREACTORS']:
+            cherrypy.session[key] = cherrypy.session['old_{}'.format(key)]
+            return self.scenarios(level=cherrypy.session['level'])
+
 
 
     def __run_simulation(self, simulationParams):

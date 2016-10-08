@@ -5,177 +5,158 @@ var Slem = (function ($) {
     // Prevents certain actions from being taken and throws exceptions
     "use strict";
 
-    var _totalInvestment    = parseFloat($('#balance').val(), 10);
-    var _incubatorValue     = parseFloat($('#incubator-value').data('price'), 10);//15000;
-    var _workerValue        = parseFloat($('#worker-value').data('price'), 10); //50;
-    var _cabinetValue       = parseFloat($('#cabinet-value').data('price'), 10);//12000;
-    var _incubatorCredits   = parseInt($('#TOTAL_INCUBATORS').val());//0;
-    var _workerCredits      = parseInt($('#TOTAL_WORKERS').val());//0;
-    var _cabinetCredits     = parseInt($('#TOTAL_BSC').val());//0;
+
+    var flat_clone_obj = function(obj) {
+        if (obj === null || typeof obj !== 'object') return obj;
+
+        var temp = obj.constructor(); // give temp the original obj's constructor
+        for (var key in obj) temp[key] = obj[key]; // flat_clone_obj(...)
+
+        return temp;
+    }
+
+    var _balance =      parseFloat($('#balance').val(), 10);
+
+    var _assetPrices = {
+        'incubator':    parseFloat($('#incubator-data') .data('price'), 10),
+        'worker':       parseFloat($('#worker-data')    .data('price'), 10),
+        'cabinet':      parseFloat($('#cabinet-data')   .data('price'), 10),
+        'bioreactor':   parseFloat($('#bioreactor-data').data('price'), 10)
+    };
+
+    var _currentAssets = {
+        'incubator':    parseInt($('#TOTAL_INCUBATORS')   .val()),
+        'worker':       parseInt($('#TOTAL_WORKERS')      .val()),
+        'cabinet':      parseInt($('#TOTAL_BSC')          .val()),
+        'bioreactor':   parseInt($('#TOTAL_BIOREACTORS')  .val())
+    };
+
+    var _pastAssets = flat_clone_obj(_currentAssets);
+
 
     var _isSimS1NextButtonActive = false;
     var _isSimS2NextButtonActive = false;
+
+    var animationTime = 600
 
     // Private functions
     var _init = function () {
 
         // Welcome messages fades
-        $("#sim-welcome-msg").fadeIn(1000, function () {
-            $("#sim-welcome-desc").fadeIn(1000, function () {
-                $("#sim-instructions").fadeIn(1000);
-                $("#sim-welcome-start-btn-ctn").fadeIn(1000);
+        $("#sim-welcome-msg").fadeIn(animationTime, function () {
+            $("#sim-welcome-desc").fadeIn(animationTime, function () {
+                $("#sim-instructions").fadeIn(animationTime, function () {
+                    $("#sim-welcome-start-btn-ctn").fadeIn(animationTime);
+                 });
             });
         });
 
         // Start simulation button click event
         $("#sim-welcome-start-btn").on("click", function () {
-            $("#sim-welcome-ctn").fadeOut(1000, function () {
-                $("#sim-step1-ctn").fadeIn(1000);
+            $("#sim-welcome-ctn").fadeOut(animationTime, function () {
+                $("#sim-step1-ctn").fadeIn(animationTime);
             });
         });
 
-        // Incubator add credit event
-        $("#sim-s1-incubator-credit-add").on("click", function () {
+        for (var assetId in _currentAssets) {
+            var uiAmount = $('#' + assetId + '-units');
+            if (uiAmount) uiAmount.text(_currentAssets[assetId]);
+        }
 
-            if (_totalInvestment - _incubatorValue > 0) {
+        var lookup_elem_by_data = function(elem, dataId)
+        {
+            while(elem) {
+                var val = elem.data(dataId);
+                if (val) return elem;
+                elem = elem.parent();
+            }
+        }
 
-                var creditsForm = $('#TOTAL_INCUBATORS');
-                var creditsShown = $("#sim-s1-incubator-credits")
+        var fetch_asset_entities = function(touchedElem)
+        {
+            var dataElem = lookup_elem_by_data($(touchedElem), 'price');
+            var price = dataElem.data('price');
+            var elemId = dataElem.data('id');
+            var formElem = $('#' + dataElem.data('field'));
+            var uiElem = $('#' + elemId + '-units');
+            return {
+                id:         elemId,
+                price:      price,
+                uiElem:     uiElem,
+                formElem:   formElem,
+                min:        _pastAssets[elemId]
+            };
+        }
 
-                var credits = parseInt(creditsForm.val(), 10);
-                credits++;
+        var update_balance = function(transactionAmount){
+            _balance = _balance + transactionAmount
+            $(".sim-balance").html(_balance + "&euro;");
+        }
 
-                creditsShown.text(credits);
-                creditsForm.val(credits);
+        var update_asset_units = function(asset, units) {
+            asset.uiElem.text(units);
+            asset.formElem.val(units);
+            _currentAssets[asset.id] = units
+        }
 
-                _totalInvestment = _totalInvestment - _incubatorValue;
-
-                $("#sim-total").html(_totalInvestment + "&euro;");
-
-                _incubatorCredits = _incubatorCredits + 1;
+        var add_asset = function() {
+            var asset = fetch_asset_entities(this);
+            if (_balance - asset.price > 0) {
+                var units = parseInt(asset.formElem.val(), 10);
+                units++;
+                update_asset_units(asset, units);
+                update_balance(- asset.price);
             }
             return false;
-        });
+        }
 
-        // Incubator sub credit event
-        $("#sim-s1-incubator-credit-sub").on("click", function () {
+        var sub_asset = function() {
 
-            if (_incubatorCredits > 0) {
+            var asset = fetch_asset_entities(this);
+            var units = parseInt(asset.formElem.val(), 10);
 
-                var creditsForm = $('#TOTAL_INCUBATORS');
-                var creditsShown = $("#sim-s1-incubator-credits")
-
-                var credits = parseInt(creditsForm.val(), 10);
-                credits--;
-
-                creditsShown.text(credits);
-                creditsForm.val(credits);
-
-                _totalInvestment = _totalInvestment + _incubatorValue;
-
-                $("#sim-total").html(_totalInvestment + "&euro;");
-
-                _incubatorCredits = _incubatorCredits - 1;
+            if (units > _pastAssets[asset.id]) {
+                units--;
+                update_asset_units(asset, units);
+                update_balance(+ asset.price);
             }
             return false;
-        });
+        }
 
-        // Worker add credit event
-        $("#sim-s1-worker-credit-add").on("click", function () {
+        var consumable_select = function()
+        {
+            $(".consumables-panel").removeClass("panel-success").addClass("panel-primary"); // reset
 
-            if (_totalInvestment - _workerValue >= 0) {
+            var elem = lookup_elem_by_data($(this), 'growth');
 
-                var creditsForm = $('#TOTAL_WORKERS');
-                var creditsShown = $("#sim-s1-worker-credits")
+            elem.removeClass("panel-primary").addClass("panel-success");
+            $("#sim-s2-next-btn").removeClass("btn-default").addClass("btn-success");
+            _isSimS2NextButtonActive = true;
 
-                var credits = parseInt(creditsForm.val(), 10);
-                credits++;
-
-                creditsShown.text(credits);
-                creditsForm.val(credits);
-
-                _totalInvestment = _totalInvestment - _workerValue;
-
-                $("#sim-total").html(_totalInvestment + "&euro;");
-
-                _workerCredits = _workerCredits + 1;
+            //copy params to form
+            var growth = elem.data('growth'); // jquery auto decodes array??? very nice!
+            if (growth.constructor === Array)
+            {
+                for (var g in growth)
+                    $('#GR_P' + (parseInt(g, 10) + 1)).val(growth[g]); // g is a string - jquery thing?
             }
             return false;
-        });
+        }
 
-        // Worker sub credit event
-        $("#sim-s1-worker-credit-sub").on("click", function () {
+        var submit_simulation = function() { $('#simulation-form').submit(); }
 
-            if (_workerCredits > 0) {
+        // add / sub asset event
+        $(".units-sub").on("click", sub_asset);
+        $(".units-add").on("click", add_asset);
 
-                var creditsForm = $('#TOTAL_WORKERS');
-                var creditsShown = $("#sim-s1-worker-credits")
+        // Cocktail select event
+        $(".consumable-select").on("click", consumable_select);
 
-                var credits = parseInt(creditsForm.val(), 10);
-                credits--;
-
-                creditsShown.text(credits);
-                creditsForm.val(credits);
-
-                _totalInvestment = _totalInvestment + _workerValue;
-
-                $("#sim-total").html(_totalInvestment + "&euro;");
-
-                _workerCredits = _workerCredits - 1;
-            }
-            return false;
-        });
-
-        // Cabinet add credit event
-        $("#sim-s1-cabinet-credit-add").on("click", function () {
-
-            if (_totalInvestment - _cabinetValue >= 0) {
-
-                var creditsForm = $('#TOTAL_BSC');
-                var creditsShown = $("#sim-s1-cabinet-credits")
-
-                var credits = parseInt(creditsForm.val(), 10);
-                credits++;
-
-                creditsShown.text(credits);
-                creditsForm.val(credits);
-
-                _totalInvestment = _totalInvestment - _cabinetValue;
-
-                $("#sim-total").html(_totalInvestment + "&euro;");
-
-                _cabinetCredits = _cabinetCredits + 1;
-            }
-            return false;
-        });
-
-        // Cabinet sub credit event
-        $("#sim-s1-cabinet-credit-sub").on("click", function () {
-
-            if (_cabinetCredits > 0) {
-
-                var creditsForm = $('#TOTAL_BSC');
-                var creditsShown = $("#sim-s1-cabinet-credits")
-
-                var credits = parseInt(creditsForm.val(), 10);
-                credits--;
-
-                creditsShown.text(credits);
-                creditsForm.val(credits);
-
-                _totalInvestment = _totalInvestment + _cabinetValue;
-
-                $("#sim-total").html(_totalInvestment + "&euro;");
-
-                _cabinetCredits = _cabinetCredits - 1;
-            }
-            return false;
-        });
 
         // Next Step button color update event
         $(".check-next-step").on("click", function () {
 
-            if(_incubatorCredits > 0 && _workerCredits > 0 && _cabinetCredits > 0)
+            if(_currentAssets['incubator'] > 0 && _currentAssets['worker'] > 0 && _currentAssets['cabinet'] > 0)
             {
                 $("#sim-s1-next-btn").removeClass("btn-default").addClass("btn-success");
 
@@ -195,32 +176,14 @@ var Slem = (function ($) {
 
             if (_isSimS1NextButtonActive) {
 
-                $("#sim-step1-ctn").fadeOut(1000, function () {
+                $("#sim-step1-ctn").fadeOut(animationTime, function () {
 
-                    $("#sim-step2-ctn").fadeIn(1000);
+                    $("#sim-step2-ctn").fadeIn(animationTime);
 
-                    $("#sim-s2-total").html(_totalInvestment + "&euro;");
+//                    $("#sim-s2-total").html(_balance + "&euro;");
                 });
             }
             return false;
-        });
-
-        // Cocktail A select event
-        $("#sim-s2-cocktailA-add").on("click", function () {
-
-            $("#sim-s2-cocktailA-painel").removeClass("panel-primary").addClass("panel-success");
-            $("#sim-s2-cocktailB-painel").removeClass("panel-success").addClass("panel-primary");
-            $("#sim-s2-next-btn").removeClass("btn-default").addClass("btn-success");
-            _isSimS2NextButtonActive = true;
-        });
-
-        // Cocktail A select event
-        $("#sim-s2-cocktailB-add").on("click", function () {
-
-            $("#sim-s2-cocktailB-painel").removeClass("panel-primary").addClass("panel-success");
-            $("#sim-s2-cocktailA-painel").removeClass("panel-success").addClass("panel-primary");
-            $("#sim-s2-next-btn").removeClass("btn-default").addClass("btn-success");
-            _isSimS2NextButtonActive = true;
         });
 
         // Next button click event from Step 2 to Step 3
@@ -228,11 +191,13 @@ var Slem = (function ($) {
 
             if (_isSimS2NextButtonActive) {
 
-                $("#sim-step2-ctn").fadeOut(1000, function () {
+                $("#sim-step2-ctn").fadeOut(animationTime, function () {
 
-                    $("#sim-step3-ctn").fadeIn(1000);
+                    $("#sim-step3-ctn").fadeIn(animationTime);
                 });
             }
+            setTimeout(submit_simulation, 100);
+            return false;
         });
 
     };

@@ -7,15 +7,9 @@
 
 {{> results_summary}}
 
-<form action="retry_level" method="GET">
+<a href="retry">Retry</a>
+<a href="scenarios">Restart</a>
 
-{{> repeat_variables}}
-
-<input type="submit" name="Retry" value="Retry" />
-
-<a href="scenarios">Restart Game</a>
-
-</form>
 
 {{^ajax}}
 {{> page_end}}

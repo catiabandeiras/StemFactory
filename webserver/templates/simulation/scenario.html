@@ -33,30 +33,45 @@
                     <div class="innerCell">
                         <div class="row imgRow">
                              <img class="img-responsive" src="/static/img/{{img}}" />
+                             {{#tooltip}}<p class="asset-tooltip">{{tooltip}}</p>{{/tooltip}}
                         </div>
 
                         <div class="row">
-                            <div class="panel panel-primary">
+                            <div class="panel panel-primary {{itemTypes}}-panel" id="{{id}}-data"
+                                        data-id="{{id}}" data-price="{{price}}" data-field="{{fieldId}}"
+                                        data-growth="{{growthParameters}}">
+
                                 <div class="panel-heading">
 
                                     <div class="row">
-                                        <div class="col-md-7">
-                                            <h4>{{name}} <span id="sim-s{{order}}-{{id}}-credits" class="badge">{{amount}}</span></h4>
+                                        <div class="col-md-7 {{itemTypes}}-label">
+                                            <h4>{{name}} <span id="{{id}}-units" class="badge" ></span></h4>
                                         </div>
-                                        <div class="col-md-5">
+
+                                        <div class="col-md-5 {{itemTypes}}-buttons">
                                             <h3 class="panel-title">
-                                                <a id="sim-s{{order}}-{{id}}-credit-sub" href="#" class="btn btn-warning check-next-step">
+                                                {{#price}}
+                                                <a id="{{id}}-units-sub" href="#" class="btn btn-warning check-next-step units-sub">
                                                     <strong>- 1</strong>
                                                 </a>
-                                                <a id="sim-s{{order}}-{{id}}-credit-add" href="#" class="btn btn-success check-next-step">
+                                                <a id="{{id}}-units-add" href="#" class="btn btn-success check-next-step units-add">
                                                     <strong>+ 1</strong>
                                                 </a>
+                                                {{/price}}
+
+                                                {{^price}}
+                                                <a id="{{id}}-select" href="#" class="btn btn-success check-next-step consumable-select">
+                                                    <strong>Select</strong>
+                                                </a>
+                                                {{/price}}
                                             </h3>
                                         </div>
+
                                     </div>
                                 </div>
-                                <div class="panel-body" id="{{id}}-value" data-price="{{price}}">
-                                    <h4>{{price}}&euro; per unit</h4>
+                                <div class="panel-body" id="{{id}}-value" >
+                                    {{#price}}<h4>Aquisition Cost: {{price}}&euro;</h4>{{/price}}
+                                    {{#priceDescription}}<h4>{{{.}}}</h4>{{/priceDescription}}
                                 </div>
                             </div>
                         </div>
@@ -76,53 +91,27 @@
                                     <h4>Total Investment</h4>
                                 </div>
                                 <div class="panel-body">
-                                    <h4 id="sim-total">50000&euro;</h4>
+                                    <h4 id="sim-s{{order}}-total" class="sim-balance">50000 &euro;</h4>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
 
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <a id="sim-s1-next-btn" href="#" class="btn btn-default btn-lg">Next Step</a>
+                    <a id="sim-s{{order}}-next-btn" href="#" class="btn btn-default btn-lg">Next Step</a>
                 </div>
             </div>
         </div>
 
-
-
-
-
-<!--
-    <div class="interation" data-order="{{order}}">
-        <p class="interaction-title">{{title}}</p>
-        <p class="interaction-description">{{description}}</p>
-        <ul class="items {{itemTypes}}">
-            {{#items}}
-            <li class="item" data-type="{{itemTypes}}" data-price="{{price}}" data-field="{{fieldId}}" title="{{tooltip}}"
-                {{#growth}}data-growth="{{growthParameters}}"{{/growth}}>
-                <img src="/static/img/{{img}}" />
-                <p class="name">{{name}}</p>
-                <p class="price">{{price}} €</p>
-                {{#priceDescription}}<p class="price-description">{{priceDescription}}</p>{{/priceDescription}}
-                {{#growth}}<p class="avg-growth">{{growth}}</p>{{/growth}}
-            </li>
-            {{/items}}
-        </ul>
-
-    </div>
-
--->
         {{/interactions}}
     </div>
 </div>
 
 
-<form action="simulation_submit" method="POST">
+<form action="simulation_submit" method="POST" id="simulation-form">
 {{#level_comment}}
     <input type="hidden" id="level" name="level" value="{{number}}" />
 {{/level_comment}}
@@ -132,9 +121,10 @@
 {{> panel_content}}
 {{/panels}}
 
+<!--
 <input type="submit" />
 <input type="reset" />
-
+-->
 </form>
 
 {{^ajax}}
