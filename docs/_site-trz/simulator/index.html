@@ -101,9 +101,10 @@
 	<div id="sim-step1-ctn">
 
 	    <div class="row remaining">
-	       <h2>Lab Setup</h2>
-	       <div class="label">Remaining</div>
-	       <div class="panel-body">
+	     	<h2>Lab Setup</h2>
+	       
+	    	<div class="panel-body">
+	       		<div class="label">Remaining: </div>
 				<span id="sim-total">50000&euro;</span>
 			</div>
 	    </div>
@@ -238,7 +239,14 @@
 	</div>
 
 	<div id="sim-step2-ctn">
-		<h2>Choose your cell "food"</h2>
+		<div class="row remaining">
+	     	<h2>Choose your cell "food"</h2>
+	       
+	    	<div class="panel-body">
+	       		<div class="label">Remaining: </div>
+				<span id="sim-s2-total"></span>
+			</div>
+	    </div>
 
 		<div class="row">
 			<div class="cellBlock col-md-3 col-md-offset-2">
@@ -269,6 +277,7 @@
         		    </div>
 	        	</div>
 	        </div>
+
 	        <div class="cellBlock col-md-3">
 	        	<div class="innerCell">
         			<div class="row imgRow">
@@ -297,7 +306,8 @@
         		    </div>
 	        	</div>
 	        </div>
-	        <div class="cellBlock col-md-3">
+
+	        <!-- <div class="cellBlock col-md-3">
 	        	<div class="innerCell">
         			<div class="row imgRow">
         		         <img class="img-responsive budget" src="/imgs/content/budget.png" />
@@ -313,17 +323,71 @@
         		        </div>
         		    </div>
 	        	</div>
-	        </div>
+	        </div> -->
 
 		</div>
 
 	    <div class="col-md-12 text-center">
-	            <a id="sim-s2-next-btn" href="#" class="btn btn-default btn-lg">Start Simulation</a>
-	        </div>
+            <a id="sim-s2-next-btn" href="#" class="btn btn-default btn-lg">Start Simulation</a>
+        </div>
 	</div>
 	
 	<div id="sim-step3-ctn">
-	    <div class="loaderBox"><div class="loader">loading...</div></div>
+	    <div class="loaderBox"><div class="loader hidden">loading...</div></div>
+
+	    <div class="results">
+	    	<h2>You lost some money in this contract.</h2>
+	    	<p>but not all is lost!</p>
+
+	    	<h3>Simulation Results</h3>
+
+	    	<h4>Donors data</h4>
+	    	<ul>
+	    	    <li>
+	    	        Days spent: 22
+	    	        Total doses: 3
+	    	        Total lots: 1
+	    	    </li>
+	    	    <li>
+	    	        Days spent: 43
+	    	        Total doses: 6
+	    	        Total lots: 2
+	    	    </li>
+	    	</ul>
+
+	    	<h4>Cost Structure</h4>
+	    	<ul>
+	    	    <li><span class="result-label">Expand Technology</span> 0</li>
+	    	    <li><span class="result-label">Reagent</span> 0</li>
+	    	    <li><span class="result-label">Labor</span> 0</li>
+	    	    <li><span class="result-label">Facility</span> 0</li>
+	    	    <li><span class="result-label">Equipment Usage</span> 0</li>
+	    	    <li><span class="result-label">Quality Control</span> 0</li>
+	    	    <li><span class="result-label">Total Cost</span> 0</li>
+	    	    <li><span class="result-label">Cost Per Dose</span> 0</li>
+	    	</ul>
+
+	    	<h4>Events</h4>
+	    	<ul>
+	    	    <li class="event">
+	    	        <p></p>
+	    	    </li>
+	    	    <li class="event">
+	    	        <p></p>
+	    	    </li>
+	    	</ul>
+
+	    	<div class="balance-container">
+	    	    <p class="balance-label">Balance</p>
+	    	    <p class="balance-value">0</p>
+	    	</div>
+
+
+
+	    	<a href="retry">Retry</a>
+	    	<a href="scenarios">Restart</a>
+	    	<a href="scenarios?level=2">Next Level</a>
+	    </div>
 	</div>
 
 </div>
