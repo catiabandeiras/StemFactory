@@ -98,10 +98,10 @@ def labsetup(env,gui,int_db):
 
             break
 
-        else:
-            print('Did not meet the demand in the allotted time!')
-            final_cost_info(env,lab,gui,int_db)
-            break
+        #else:
+        #     print('Did not meet the demand in the allotted time!')
+        #     final_cost_info(env,lab,gui,int_db)
+        #     break
 
     # while True:
 
