@@ -9,19 +9,10 @@
 
 {{> results_summary}}
 
-
-<form action="retry_level" method="GET">
-
-
-{{> repeat_variables}}
-
-
-<input type="submit" />
-
+<a href="retry">Retry</a>
 <a href="scenarios">Restart</a>
 <a href="scenarios?level={{nextlevel}}">Next Level</a>
 
-</form>
 
 {{^ajax}}
 {{> page_end}}

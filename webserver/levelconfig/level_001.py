@@ -24,7 +24,8 @@ config = {
                     'options': [
                         { 'value': '1', 'desc': 'sq. mt.'},
                         { 'value': '2', 'desc': 'sq. ft.'},
-                    ]
+                    ],
+                    'hidden': True
                 },
                 {
                     'id': 'TOTAL_WORKERS', #carry
@@ -79,7 +80,7 @@ config = {
                     'id': 'TYPE_OF_MEDIA',
                     'label': 'Culture medium for cell growth',
                     'value': 'fbs',
-                    'readonly': True
+                    'hidden': True
                 },
             ]
         },
@@ -112,19 +113,19 @@ config = {
                     'value': 3
                 },
                 {
-                    'id': 'P1',
+                    'id': 'GR_P1',
                     'label': 'Growth rate P1',
                     'hidden': True,
                     'value': 0.21
                 },
                 {
-                    'id': 'P2',
+                    'id': 'GR_P2',
                     'label': 'Growth rate P2',
                     'hidden': True,
                     'value': 0.20
                 },
                 {
-                    'id': 'P3',
+                    'id': 'GR_P3',
                     'label': 'Growth rate P3',
                     'hidden': True,
                     'value': 0.18
