@@ -5,6 +5,7 @@ startingBalance = 50000
 cocktails = [
     {
         'name': 'Cocktail A',
+        'code_name': 'fbs',
         'img': 'bottle-green.png',
         'price': 150, #Eur / L
         'growth': 0.2, # 20% per day
@@ -13,6 +14,7 @@ cocktails = [
     },
     {
         'name': 'Cocktail B',
+        'code_name': 'hpl'
         'img': 'bottle-pink.png',
         'price': 210, #Eur / L
         'growth': 0.25, # 25% per day
