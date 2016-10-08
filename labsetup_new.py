@@ -40,7 +40,7 @@ def labsetup(env,gui,int_db):
     #gui.text.insert('2.0','Entered simulation\n')
 
     lab = Laboratory(env,gui,int_db)
-
+    gui.lab = lab # make it accesible outside HACK!
     #lab.show_info_lab(gui,int_db)
 
     #yield env.timeout(1)
@@ -98,17 +98,14 @@ def labsetup(env,gui,int_db):
 
             #Calculates the number of days before deadline
 
-            gui.results.days_bf_deadline = gui.MAX_SIM_TIME - int(env.now)
+            gui.results.days_to_meet_demand = math.ceil(env.now)
+            gui.results.days_bf_deadline = gui.MAX_SIM_TIME - gui.results.days_to_meet_demand
+            gui.results.deadline_met = gui.MAX_SIM_TIME >= gui.results.days_to_meet_demand
 
             print('Met the demand in %d days!' %int(env.now))
             print('Met the demand %d days before the deadline!' %int(gui.results.days_bf_deadline))
 
             break
-
-        #else:
-        #     print('Did not meet the demand in the allotted time!')
-        #     final_cost_info(env,lab,gui,int_db)
-        #     break
 
     # while True:
 

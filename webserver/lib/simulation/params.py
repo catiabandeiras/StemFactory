@@ -129,6 +129,7 @@ class SimulationParams(object):
 
         #simulation results
         self.results = SimulationResults()
+        self.lab = None # will hold an instance of the lab to later call the cost calculation
 
 
     def example_set_simulation_output_x(self, value):

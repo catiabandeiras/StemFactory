@@ -24,12 +24,11 @@
 
             <div class="row remaining">
                 <h2>{{title}}</h2>
-                <p class="interaction-description">{{description}}</p>
-                <div class="label">Budget</div>
+                <!--p class="interaction-description">{{description}}</p-->
                 <div class="panel-body">
+                    <div class="label">Budget: </div>
                     <span id="sim-total" class="sim-balance"></span>
                 </div>
-
             </div>
 
             <div class="row">
@@ -37,7 +36,7 @@
                 <div class="cellBlock col-md-4">
                     <div class="innerCell">
                         <div class="row imgRow">
-                             <img class="img-responsive" src="/static/img/{{img}}" />
+                             <img class="img-responsive img-responsive{{order}}" src="/static/img/{{img}}" />
                              {{#tooltip}}<p class="asset-tooltip">{{tooltip}}</p>{{/tooltip}}
                         </div>
 
@@ -113,6 +112,11 @@
         </div>
 
         {{/interactions}}
+
+        <div id="sim-step3-ctn">
+
+            <div class="loaderBox"><div class="loader">loading...</div></div>
+        </div>
     </div>
 </div>
 
